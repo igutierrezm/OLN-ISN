@@ -1,22 +1,22 @@
 ** Especificación de la tabla (verbal)
   * indicadores  : número y distribución
-  * subpoblación : ocupados del sector
+  * subpoblación : ocupados
   * por          : oficio
-  * según        : año (2011-2015)
-  * agregaciones : "oficio"
+  * según        : año (2011-2015), sector
+  * agregaciones : "oficio", "sector", "oficio sector"
   * fuente       : CASEN
 
 ** Especificación de la Tabla (Stata)
-  .tabla = .table.new
+  .tabla = .ol_table.new
   * Estadísticas
   .tabla.cmds      = `""total _counter" "proportion _oficio1""'
   .tabla.masks     = `""n" "%""'
   * Dominios
   .tabla.years     = "2011 2013 2015"
   .tabla.months    = "0"
-  .tabla.subpop    = "if (_rama1_v1 == $sector)"
-  .tabla.over      = "_oficio1"
-  .tabla.aggregate = `""_oficio1""'
+  .tabla.subpop    = "if _ocupado == 1"
+  .tabla.over      = "_rama1_v1 _oficio1"
+  .tabla.aggregate = `""_oficio1" "_rama1_v1" "_oficio1 _rama1_v1""'
   * I-O
   .tabla.src       = "casen"
   .tabla.path      = "$datos/CASEN"
