@@ -1,7 +1,7 @@
-OLN-ISN - Informe Sectorial Nacional, Observatorio Laboral Nacional
-===================================================================
+OLN-ISN
+=======
 
-
+Informe Sectorial Nacional.
 
 
 Installation
