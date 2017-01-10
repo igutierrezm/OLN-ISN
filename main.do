@@ -1,34 +1,26 @@
 * ISN - Informe Sectorial Nacional (script principal)
 
 *===============================================================================
-* Intrucciones
+* Prólogo
 *===============================================================================
-
-* 1. Visite https://github.com/igutierrezm.
-* 2. Clone el repo OLN-Tools y guárdelo en, digamos, `github'.
 
 * Housekeeping
 set more off
 clear all
 cls
 
-* Paquetes externos
-local github "C:/Users/Pedro/Documents/GitHub/OLN-Tools/src"
-net install ol_tools_casen, all force from("`github'")
-net install ol_tools_ene,   all force from("`github'")
-net install ol_tools_esi,   all force from("`github'")
-net install ol_tools,       all force from("`github'")
-
-** Macros globales
+* Macros globales
 global datos    "C:/Users/Pedro/Documents/Oficina OLN/Datos/Stata"
 global proyecto "C:/Users/Pedro/Documents/GitHub/OLN-ISN"
 
-* Instalación vía internet (experimental - no usar)
-* local url "https://rawgit.com/igutierrezm/OLN-Tools/master/src"
-* net install ol_tools_casen, all from("`url'")
-* net install ol_tools_ene,   all from("`url'")
-* net install ol_tools_esi,   all from("`url'")
-* net install ol_tools,       all from("`url'")
+* Paquetes externos
+local OLNTools "C:/Users/Pedro/Documents/GitHub/OLN-Tools/src"
+net install ol_tools_casen, all force from("`OLNTools'")
+net install ol_tools_ene,   all force from("`OLNTools'")
+net install ol_tools_esi,   all force from("`OLNTools'")
+net install ol_tools,       all force from("`OLNTools'")
+* También puede descargar e instalar los paquetes simultáneamente fijando
+* local OLNTools net from "https://rawgit.com/igutierrezm/OLNTools/master/src"
 
 *===============================================================================
 * Cuerpo
