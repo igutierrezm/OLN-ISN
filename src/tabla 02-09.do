@@ -1,5 +1,4 @@
-* indicador 1  : % de ocupados con subempleo involuntario
-* indicador 2  : % de ocupados que trabajan horas excesivas
+* indicadores  : % de ocupados que trabajan horas excesivas
 * subpoblación : ocupados del sector
 * años         : 2010 y 2015
 * meses        :
@@ -20,7 +19,7 @@
   .table.months    = "2 5 8 11"
   .table.subpop    = "if (_ocupado == 1) & inlist(_rama1_v1, $sector, 1e6)"
 	.table.by        = "_exceso_hr_int"
-  .table.along     = "_cise_v1 _dependiente _rama1_v1"
+  .table.along     = "`tem' _rama1_v1"
   .table.aggregate = `""_rama1_v1" "`tem'" "`tem' _rama1_v1""'
   * Estructura
   .table.rowvar    = "`tem'"
@@ -32,9 +31,9 @@
 * Estimación
 .table.create
 .table.annualize
-save "$proyecto/data/tabla 05-06", replace
+save "$proyecto/data/tabla 02-09", replace
 
 * Exportación
 keep if _exceso_hr_int == 1
-.table.export_excel bh, file("tabla 05-06")
-.table.export_excel cv, file("tabla 05-06")
+.table.export_excel bh, file("tabla 02-09")
+.table.export_excel cv, file("tabla 02-09")
