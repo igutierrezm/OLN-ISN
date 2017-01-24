@@ -21,7 +21,7 @@ save `df', emptyok
   .table.masks     = `""%""'
   * Dominios
   .table.years     = "2015"
-  .table.months    = "2 5 8 11"
+  .table.months    = "11"
   .table.subpop    = "if _rama1_v1 == $sector"
   .table.by        = "`tem'"
   .table.along     = "_region_re_v1"

@@ -12,7 +12,8 @@ cls
 * Macros globales
 global datos    "C:/Users/Pedro/Documents/Oficina OLN/Datos/Stata"
 global proyecto "C:/Users/Pedro/Documents/GitHub/OLN-ISN"
-global sector = 3
+global sector = 6
+global nacion = 1e6
 
 * Paquetes externos
 local OLNTools "C:/Users/Pedro/Documents/GitHub/OLN-Tools/src"
@@ -20,6 +21,7 @@ net install ol_tools_casen, all force from("`OLNTools'")
 net install ol_tools_ene,   all force from("`OLNTools'")
 net install ol_tools_esi,   all force from("`OLNTools'")
 net install ol_tools_sii,   all force from("`OLNTools'")
+net install ol_tools_pib,   all force from("`OLNTools'")
 net install ol_tools,       all force from("`OLNTools'")
 * También puede descargar e instalar los paquetes simultáneamente fijando
 * local OLNTools net from "https://rawgit.com/igutierrezm/OLNTools/master/src"
@@ -29,7 +31,7 @@ net install ol_tools,       all force from("`OLNTools'")
 *===============================================================================
 
 * Tablas
-local files : dir "$proyecto/src/" files "tabla 02-09.do"
+local files : dir "$proyecto/src/" files "tabla 02-02.do"
 foreach file of local files {
 	do "$proyecto/src/`file'"
 }

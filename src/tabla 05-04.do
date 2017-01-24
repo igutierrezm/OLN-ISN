@@ -8,7 +8,12 @@
 * agregaciones : sector"
 * fuente       : CASEN
 
-* Especificación (init)
+* Preparativos
+drop _all
+tempfile df
+save `df', emptyok
+
+* Especificación
 .table = .ol_table.new
   * Estadísticas
   .table.cmds      = ""
@@ -21,41 +26,42 @@
   .table.along     = "_rama1_v1 _cise_v1"
   .table.aggregate = "_rama1_v1"
   * Estructura
-  .table.rowvar    = "mask"
-  .table.colvar    = "_rama1_v1 _cise_v1"
+  .table.rowvar    = ""
+  .table.colvar    = ""
   * I-O
   .table.src       = "casen"
 	.table.varlist0  = ""
 
 * Estimación
-drop _all
-tempfile df
-save `df', emptyok
 forvalues i = 1(1)3 {
-  * Especificación (act)
+  * Especificación
 	local var : word `i' of _boleta _cotiza_pension _cotiza_salud
-  .table.cmds     = `""proportion `var'""'
   .table.by       = "`var'"
+  .table.cmds     = `""proportion `var'""'
 	.table.varlist0 = "_cise_v1 _ocupado _rama1_v1 `var'"
 	* Estimación
 	.table.create
   .table.annualize
   * Anexión
-	drop `var'
-	replace mask = `i'
+	rename `var' categoria
+	generate panel = `i'
   append using `df'
   save `df', replace
 }
 
 * Etiquetado
-label define mask 1 "Formalidad de la unidad económica", modify
-label define mask 2 "Cotización previsional", modify
-label define mask 3 "Cotización de salud", modify
+label define panel 1 "Formalidad de la unidad económica", modify
+label define panel 2 "Cotización previsional", modify
+label define panel 3 "Cotización de salud", modify
+label values panel panel
 
 * GUardado
 save "$proyecto/data/tabla 05-04", replace
 
 * Exportación
-keep if inlist(_rama1_v1, $sector, 1e6)
+keep if inlist(_rama1_v1, $sector, 1e6) & (categoria == 1)
+* Estructura
+.table.rowvar = "panel"
+.table.colvar = "_rama1_v1 _cise_v1"
 .table.export_excel bh, file("tabla 05-04")
 .table.export_excel cv, file("tabla 05-04")
