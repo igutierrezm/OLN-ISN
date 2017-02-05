@@ -10,8 +10,8 @@
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = `""proportion _tamaño_empresa""'
-  .table.masks     = `""%""'
+  .table.cmds      = "(proportion _tamaño_empresa)"
+  .table.masks     = "%"
   * Dominios
   .table.years     = "2010 2011 2012 2013 2014 2015"
   .table.months    = "2 5 8 11"
@@ -20,7 +20,7 @@
   .table.along     = "_rama1_v1"
   .table.aggregate = "_tamaño_empresa"
   * Estructura
-  .table.rowvar    = "_tamaño_empresa"
+  .table.rowvar    = "_tamano_empresa"
   .table.colvar    = "año"
   * I-O
   .table.src       = "ene"
@@ -29,12 +29,13 @@
 * Estimación
 .table.create
 .table.annualize
-save "$proyecto/data/tabla 02-03", replace
+save "$proyecto/data/tabla 02-03.dta", replace
 
 * Exportación
 keep if _rama1_v1 == $sector
-.table.export_excel bh, file("tabla 02-03")
-.table.export_excel cv, file("tabla 02-03")
+rename _tamaño_empresa _tamano_empresa
+.table.export_excel bh, file("$proyecto/data/tabla 02-03.xlsx")
+.table.export_excel cv, file("$proyecto/data/tabla 02-03.xlsx")
 
 * Notas al pie
 * ¹ Tamaño de empresa (de acuerdo al número de trabajadores)

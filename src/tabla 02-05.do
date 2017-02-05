@@ -12,15 +12,15 @@
   * Abreviaciones
   local tem "_tamaño_empresa"
   * Estadísticas
-  .table.cmds      = `""proportion _educ""'
-  .table.masks     = `""%""'
+  .table.cmds      = "(proportion _educ)"
+  .table.masks     = "%"
   * Dominios
   .table.years     = "2015"
   .table.months    = "2 5 8 11"
   .table.subpop    = "if _rama1_v1 == $sector"
   .table.by        = "_educ"
   .table.along     = "`tem'"
-  .table.aggregate = `""_educ" "`tem'" "`tem' _educ""'
+  .table.aggregate = "(_educ) (`tem') (`tem' _educ)"
   * Estructura
   .table.rowvar    = "_educ"
   .table.colvar    = "`tem'"
@@ -32,11 +32,11 @@
 * Estimación
 .table.create
 .table.annualize
-save "$proyecto/data/tabla 02-05", replace
+save "$proyecto/data/tabla 02-05.dta", replace
 
 * Exportación
-.table.export_excel bh, file("tabla 02-05")
-.table.export_excel cv, file("tabla 02-05")
+.table.export_excel bh, file("$proyecto/data/tabla 02-05.xlsx")
+.table.export_excel cv, file("$proyecto/data/tabla 02-05.xlsx")
 
 * Notas al pie
 * ¹ Tamaño de empresa (de acuerdo al número de trabajadores)

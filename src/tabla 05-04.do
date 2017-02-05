@@ -1,11 +1,13 @@
-* indicadores  : Indicadores de formalidad del trabajo
-*								(7 indicadores en total)
-* subpoblación : ocupados independientes (empleadores y cta propia)
+* indicadores  :
+*   1. % de trabajadores independientes que dan boleta.
+*   2. % de trabajadores independientes que cotiza en el sistema previsional
+*   3. % de trabajadores independientes que cotiza en el sistema de salud
+* subpoblación : ocupados independientes
 * años         : 2010 y 2015
 * meses        :
 * por          :
-* según        : sector
-* agregaciones : sector"
+* según        : rama1
+* agregaciones : rama1
 * fuente       : CASEN
 
 * Preparativos
@@ -16,52 +18,54 @@ save `df', emptyok
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = ""
-  .table.masks     = ""
+  .table.cmds      = "[delayed]"
+  .table.masks     = "%"
   * Dominios
   .table.years     = "2015"
   .table.months    = "11"
-  .table.subpop    = "if (_ocupado == 1) & inlist(_cise_v1, 1, 2)"
-	.table.by        = ""
+  .table.subpop    = "if inlist(_cise_v1, 1, 2)"
+	.table.by        = "[delayed]"
   .table.along     = "_rama1_v1 _cise_v1"
   .table.aggregate = "_rama1_v1"
   * Estructura
-  .table.rowvar    = ""
-  .table.colvar    = ""
+  .table.rowvar    = "mask"
+  .table.colvar    = "_rama1_v1 _cise_v1"
   * I-O
   .table.src       = "casen"
-	.table.varlist0  = ""
+	.table.varlist0  = "[delayed]"
 
 * Estimación
-forvalues i = 1(1)3 {
+local i = 1
+foreach var in _boleta _cotiza_pension _cotiza_salud {
   * Especificación
-	local var : word `i' of _boleta _cotiza_pension _cotiza_salud
   .table.by       = "`var'"
-  .table.cmds     = `""proportion `var'""'
-	.table.varlist0 = "_cise_v1 _ocupado _rama1_v1 `var'"
+  .table.cmds     = "(proportion `var')"
+	.table.varlist0 = "_cise_v1 _rama1_v1 `var'"
 	* Estimación
 	.table.create
   .table.annualize
+  * Homologación
+  rename `var' categoria
+  replace mask = `i'
   * Anexión
-	rename `var' categoria
-	generate panel = `i'
+  local ++i
   append using `df'
   save `df', replace
 }
 
 * Etiquetado
-label define panel 1 "Formalidad de la unidad económica", modify
-label define panel 2 "Cotización previsional", modify
-label define panel 3 "Cotización de salud", modify
-label values panel panel
+label variable mask "% de trabajadores independientes que ..."
+label define mask                                    ///
+  1 "... están entregando boleta o factura"          ///
+  2 "... están cotizando en el sistema previsional"  ///
+  3 "... están cotizando en el sistema de salud",    ///
+  modify
+label values mask mask
 
 * GUardado
-save "$proyecto/data/tabla 05-04", replace
+save "$proyecto/data/tabla 05-04.dta", replace
 
 * Exportación
 keep if inlist(_rama1_v1, $sector, 1e6) & (categoria == 1)
-* Estructura
-.table.rowvar = "panel"
-.table.colvar = "_rama1_v1 _cise_v1"
-.table.export_excel bh, file("tabla 05-04")
-.table.export_excel cv, file("tabla 05-04")
+.table.export_excel bh, file("$proyecto/data/tabla 05-04.xlsx")
+.table.export_excel cv, file("$proyecto/data/tabla 05-04.xlsx")

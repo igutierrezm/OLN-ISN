@@ -12,15 +12,15 @@
   * Abreviaciones
   local tem  "_tamaño_empresa"
   * Estadísticas
-  .table.cmds      = `""proportion _cise_v3""'
-  .table.masks     = `""%""'
+  .table.cmds      = "(proportion _cise_v3)"
+  .table.masks     = "%"
   * Dominios
   .table.years     = "2015"
   .table.months    = "2 5 8 11"
   .table.subpop    = "if _rama1_v1 == 1"
   .table.by        = "_cise_v3"
   .table.along     = "`tem'"
-  .table.aggregate = `""_cise_v3" "`tem'" "_cise_v3 `tem'""'
+  .table.aggregate = "(_cise_v3) (`tem') (_cise_v3 `tem')"
   * Estructura
   .table.rowvar    = "_cise_v3"
   .table.colvar    = "`tem'"
@@ -32,11 +32,11 @@
 * Estimación
 .table.create
 .table.annualize
-save "$proyecto/data/tabla 02-06", replace
+save "$proyecto/data/tabla 02-06.dta", replace
 
 * Exportación
-.table.export_excel bh, file("tabla 02-06")
-.table.export_excel cv, file("tabla 02-06")
+.table.export_excel bh, file("$proyecto/data/tabla 02-06.xlsx")
+.table.export_excel cv, file("$proyecto/data/tabla 02-06.xlsx")
 
 * Notas al pie
 * ¹ Tamaño de empresa (de acuerdo al número de trabajadores)

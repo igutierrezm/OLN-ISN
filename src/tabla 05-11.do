@@ -1,9 +1,9 @@
-* indicador 1  : escolaridad promedio
-* indicador 2  : edad promedio
-* indicador 3  : promedio yopr
-* indicador 4  : % de mujeres
-* indicador 5  : % capacitados
-* indicador 5  : distribución de ocupados
+* indicadores  :
+*   1. escolaridad promedio
+*   2. edad promedio
+*   3. promedio yopr
+*   4. % de mujeres
+*   5. % capacitados
 * subpoblación : ocupados
 * años         : 2010 y 2015
 * meses        :
@@ -12,41 +12,46 @@
 * agregaciones :
 * fuente       : casen
 
+* Preparativos
+drop _all
+tempfile df
+save `df', emptyok
+
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = ""
-  .table.masks     = ""
+  .table.cmds      = "[delayed]"
+  .table.masks     = "[delayed]"
 	* Dominios
   .table.years     = "2015"
   .table.months    = ""
-  .table.subpop    = ""
+  .table.subpop    = "[delayed]"
 	.table.by        = "_oficio4"
   .table.along     = "_rama1_v1"
-  .table.aggregate = `""_oficio4""'
+  .table.aggregate = "_oficio4"
   * Estructura
   .table.rowvar    = "_oficio4"
   .table.colvar    = "mask"
   * I-O
   .table.src       = "casen"
-	.table.varlist0  = ""
+	.table.varlist0  = "[delayed]"
 
 * Estimación
-drop _all
-tempfile df
-save `df', emptyok
-forvalues i = 1(1)6 {
-  forvalues j = 1(1)13 {
+forvalues j = 1(1)13 {
+  local i = 1
+  foreach var in _edad _esc _yprincipal _mujer _capacitado _oficio4 {
     * Especificación (act)
-    local var : word `i' of _edad _esc _yprincipal _mujer _capacitado _oficio4
-    if (`i' != 6) .table.cmds = `""mean `var'""'
-    if (`i' == 6) .table.cmds = `""proportion `var'""'
+    if (`i' != 6) .table.cmds = "(mean `var')"
+    if (`i' == 6) .table.cmds = "(proportion `var')"
     .table.subpop   = "if (_rama1_v1 == `j') & (`var' != 1e5)"
     .table.varlist0 = "_ocupado _oficio4 _rama1_v1 `var'"
     * Estimación
     .table.create
-    * Anexión
+    * Homologación
     replace mask = `i'
+    local ++i
+
+    * Anexión
     append using `df'
     save `df', replace
   }
@@ -65,10 +70,18 @@ replace o2 = 100^2 * bh if inlist(mask, 4, 5)
     6 "% de ocupados c/r al total del sector",
     modify;
 # delimit cr
-save "$proyecto/data/tabla 05-11", replace
+save "$proyecto/data/tabla 05-11.dta", replace
 
 * Exportación
-/* bysort _rama1_v1
-keep if inlist(_rama1_v1, $sector, 1e6)
-.table.export_excel bh, file("tabla 05-11")
-.table.export_excel cv, file("tabla 05-11") */
+*use "$proyecto/data/tabla 05-11.dta", clear
+/* keep if (_rama1_v1 == $sector)
+keep _oficio4 mask bh o2 cv
+save `df', replace
+keep if (mask == 6)
+gsort -bh
+generate ranking = _n
+merge 1:m oficio4 using `df', no generate */
+/*
+.table.export_excel bh, file("$proyecto/data/tabla 05-11.xlsx")
+.table.export_excel cv, file("$proyecto/data/tabla 05-11.xlsx")
+*/

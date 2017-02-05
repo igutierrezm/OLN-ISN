@@ -1,4 +1,4 @@
-* indicador 1  : distribución de ventas
+/* * indicador 1  : distribución de ventas
 * indicador 2  : distribución de empresas
 * indicador 3  : distribución de trabajadores dependientes informados
 * subpoblación : empresas
@@ -50,4 +50,4 @@ keep if (año == 2014) & (_rama1_v1 == $sector)
 .table = .ol_table.new
 	.table.rowvar  = "subsector"
 	.table.colvar  = "mask"
-.table.export_excel bh, file("tabla 03-01")
+.table.export_excel bh, file("$proyecto/data/tabla 03-01") */

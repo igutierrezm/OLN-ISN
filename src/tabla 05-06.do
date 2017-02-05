@@ -1,11 +1,12 @@
-* indicador 1  : % de ocupados con subempleo involuntario
-* indicador 2  : % de ocupados que trabajan horas excesivas
-* subpoblación : ocupados del sector
+* indicadores  :
+*   1. % de ocupados con subempleo involuntario
+*   2. % de ocupados que trabajan horas excesivas
+* subpoblación : ocupados del sector (exceptuando fnr)
 * años         : 2010 y 2015
 * meses        :
 * por          :
-* según        : TEM¹ (incluyendo TCCU²)
-* agregaciones : "sector"
+* según        : cise, rama1
+* agregaciones : cise, rama1, cise x rama1
 * fuente       : ene
 
 * Preparativos
@@ -13,51 +14,53 @@ drop _all
 tempfile df
 save "`df'", emptyok
 
-* Especificación (init)
+* Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = `""'
-  .table.masks     = `""'
+  .table.cmds      = "[delayed]"
+  .table.masks     = "[delayed]"
 	* Dominios
   .table.years     = "2010 2015"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "if (_ocupado == 1) & inlist(_rama1_v1, $sector, 1e6)"
-	.table.by        = ""
-  .table.along     = "_cise_v4 _rama1_v1"
-  .table.aggregate = `""_cise_v4" "_rama1_v1" "_cise_v4 _rama1_v1""'
+  .table.subpop    = "if (_ocupado == 1) & (_cise_v1 != 3)"
+	.table.by        = "[delayed]"
+  .table.along     = "_cise_v1 _rama1_v1"
+  .table.aggregate = "(_cise_v1) (_rama1_v1) (_cise_v1 _rama1_v1)"
   * Estructura
-  .table.rowvar    = "_cise_v4"
-  .table.colvar    = "_rama1_v1 año panel"
+  .table.rowvar    = "_cise_v1 año"
+  .table.colvar    = "_rama1_v1 mask"
   * I-O
   .table.src       = "ene"
-	.table.varlist0  = "_cise_v4 _exceso_hr_int _jparcial_inv _ocupado _rama1_v1"
+	.table.varlist0  = "[delayed]"
 
 * Estimación
-forvalues i = 1(1)2 {
-  local var : word `i' of _jparcial_inv _exceso_hr_int
+local i = 1
+foreach var in _jparcial_inv _exceso_hr_int {
   * Especificación
-  .table.cmds      = `""proportion `var'""'
+	.table.varlist0  = "_cise_v1 _ocupado _rama1_v1 `var'"
+  .table.cmds      = "(proportion `var')"
   .table.by        = "`var'"
-  .table.masks     = "%"
   * Estimación
   .table.create
   .table.annualize
-  * Anexsión
+  * Homologación
   rename `var' categoria
-  generate panel = `i'
+  replace mask = `i'
+  local ++i
+  * Anexión
   append using "`df'"
   save "`df'", replace
 }
 
 * Etiquetado
-label define panel 1 "Subempleo",       modify
-label define panel 2 "Horas excesivas", modify
-label values panel panel
+label define mask 1 "Subempleo",       modify
+label define mask 2 "Horas excesivas", modify
+label values mask mask
 
-* GUardado
-save "$proyecto/data/tabla 05-04", replace
+* Guardado
+save "$proyecto/data/tabla 05-06.dta", replace
 
 * Exportación
-keep if categoria == 1
-.table.export_excel bh, file("tabla 05-06")
-.table.export_excel cv, file("tabla 05-06")
+keep if (categoria == 1) & inlist(_rama1_v1, $sector, 1e6)
+.table.export_excel bh, file("$proyecto/data/tabla 05-06.xlsx")
+.table.export_excel cv, file("$proyecto/data/tabla 05-06.xlsx")

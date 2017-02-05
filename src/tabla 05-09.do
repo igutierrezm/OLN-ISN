@@ -3,22 +3,22 @@
 * años         : 2010 y 2015
 * meses        :
 * por          : nivel educacional (educ)
-* según        : oficio, sector
-* agregaciones : "educ", "oficio", "educ x oficio"
+* según        : oficio1, rama1
+* agregaciones : educ, oficio1, educ x oficio1
 * fuente       : ene
 
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = `""proportion _educ""'
-  .table.masks     = `""%""'
+  .table.cmds      = "(proportion _educ)"
+  .table.masks     = "%"
 	* Dominios
   .table.years     = "2015"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "if _ocupado == 1"
+  .table.subpop    = "[delayed]"
 	.table.by        = "_educ"
   .table.along     = "_oficio1 _rama1_v1"
-  .table.aggregate = `""_educ" "_oficio1" "_educ _oficio1""'
+  .table.aggregate = "(_educ) (_oficio1) (_educ _oficio1)"
   * Estructura
   .table.rowvar    = "_oficio1"
   .table.colvar    = "_educ"
@@ -40,9 +40,9 @@ forvalues i = 1(1)13 {
     append using `df'
     save `df', replace
 }
-save "$proyecto/data/tabla 05-09", replace
+save "$proyecto/data/tabla 05-09.dta", replace
 
 * Exportación
 keep if inlist(_rama1_v1, $sector)
-.table.export_excel bh, file("tabla 05-09")
-.table.export_excel cv, file("tabla 05-09")
+.table.export_excel bh, file("$proyecto/data/tabla 05-09.xlsx")
+.table.export_excel cv, file("$proyecto/data/tabla 05-09.xlsx")
