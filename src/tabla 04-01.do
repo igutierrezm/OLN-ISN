@@ -20,16 +20,16 @@ save `df', emptyok
 .table = .ol_table.new
   * Estadísticas
   .table.cmds      = "(delayed)"
-  .table.masks     = ""
+  .table.cmds_lb   = "{%}"
 	* Dominios
   .table.years     = "2015"
   .table.months    = ""
-  .table.subpop    = "(delayed)"
+  .table.subpops   = "(delayed)"
 	.table.by        = ""
   .table.along     = "_rama1_v1"
-  .table.aggregate = "_rama1_v1"
+  .table.aggregate = "{_rama1_v1}"
   * Estructura
-  .table.rowvar    = "mask"
+  .table.rowvar    = "cmd_lb"
   .table.colvar    = "_rama1_v1"
   * I-O
   .table.src       = "casen"
@@ -38,23 +38,23 @@ save `df', emptyok
 * Estimación
 local i = 1
 foreach var in _edad _esc _yprincipal _mujer _capacitado {
-  .table.cmds     = `""mean `var'""'
-  .table.subpop   = "if (_ocupado == 1) & (`var' != 1e5)"
+  .table.cmds     = "{mean `var'}"
+  .table.subpops  = "{if (_ocupado == 1) & (`var' != 1e5)}"
   .table.varlist0 = "_ocupado _rama1_v1 `var'"
   * Estimación
   .table.create
   * Homologación
-  replace mask = `i'
+  replace cmd_lb = `i'
   append using "`df'"
   save "`df'", replace
   local ++i
 }
-replace bh = 100^1 * bh if inlist(mask, 4, 5)
-replace o2 = 100^2 * bh if inlist(mask, 4, 5)
+replace bh = 100^1 * bh if inlist(cmd_lb, 4, 5)
+replace o2 = 100^2 * bh if inlist(cmd_lb, 4, 5)
 
 * Etiquetado
 # delimit ;
-  label define mask
+  label define cmd_lb
     1 "Edad promedio"
     2 "Escolaridad promedio"
     3 "Ingreso promedio de la ocupación principal"

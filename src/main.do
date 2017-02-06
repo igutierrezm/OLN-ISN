@@ -26,7 +26,7 @@ foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 *===============================================================================
 
 * Tablas
-local files : dir "$proyecto/src/" files "tabla 05-11.do"
+local files : dir "$proyecto/src/" files "tabla 02-11.do"
 foreach file of local files {
 	do "$proyecto/src/`file'"
 }

@@ -18,7 +18,7 @@ save `df', emptyok
   local tem "_tamaño_empresa"
   * Estadísticas
   .table.cmds      = "{proportion `tem'}"
-  .table.masks     = "{%}"
+  .table.cmds_lb   = "{%}"
   * Dominios
   .table.years     = "2015"
   .table.months    = "11"

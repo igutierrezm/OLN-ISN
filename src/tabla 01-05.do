@@ -16,15 +16,15 @@ save `df', emptyok
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = `""proportion _rama1_v2""'
-  .table.masks     = `""(delayed)""'
+  .table.cmds      = "{proportion _rama1_v2}"
+  .table.masks     = "(delayed)"
   * Dominios
   .table.years     = "2014"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "(delayed)"
+  .table.subpops   = "(delayed)"
   .table.by        = "_rama1_v2"
   .table.along     = "(delayed)"
-  .table.aggregate = "_rama1_v2"
+  .table.aggregate = "{_rama1_v2}"
   * Estructura
   .table.rowvar    = "(delayed)"
   .table.colvar    = "(delayed)"
@@ -35,8 +35,8 @@ save `df', emptyok
 * Estimación
 forvalues i = 1(1)15 {
   * Especificación
-  .table.subpop = "if (_ocupado == 1) & (_region_re_v1 == `i')"
-  .table.along  = "_region_re_v1"
+  .table.subpops = "{if (_ocupado == 1) & (_region_re_v1 == `i')}"
+  .table.along   = "_region_re_v1"
   * Actualización
   .table.create
   .table.annualize

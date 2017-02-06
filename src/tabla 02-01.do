@@ -22,7 +22,7 @@ save `df', emptyok
   local tem "_tamaño_empresa"
   * Estadísticas
   .table.cmds      = "{total _counter} {proportion `tem'}"
-  .table.cmds_lb   = "{n} (%}"
+.table.cmds_lb   = "{n.} {%}"
   * Dominios
   .table.years     = "2014"
   .table.months    = "2 5 8 11"
@@ -55,16 +55,17 @@ save "`df'", replace
   local tem "_tamaño_empresa"
   * Estadísticas
   .table.cmds      = "{total _counter} {proportion `tem'}"
-  .table.masks     = "{n} {%}"
+  .table.cmds_lb   = "{n} {%}"
   * Dominios
   .table.years     = "2014"
   .table.months    = ""
-  .table.subpops   = ""
+  .table.subpops   = "{}"
   .table.by        = "`tem'"
   .table.along     = "_rama1_v1"
   .table.aggregate = "{`tem'} {_rama1_v1} {`tem' _rama1_v1}"
   * I-O
   .table.src       = "sii"
+  .table.from      = "$datos"
   .table.varlist0  = "_rama1_v1 `tem'"
 
 * Estimación
@@ -86,7 +87,7 @@ save "$proyecto/data/tabla 02-01.dta", replace
 * xlsx
 keep if inlist(_rama1_v1, $sector, 1e6)
 .table.rowvar = "_tamaño_empresa"
-.table.colvar = "_rama1_v1 panel mask"
+.table.colvar = "_rama1_v1 panel cmd_lb"
 .table.export_excel bh, file("$proyecto/data/tabla 02-01.xlsx")
 .table.export_excel cv, file("$proyecto/data/tabla 02-01.xlsx")
 

@@ -10,15 +10,15 @@
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = `""proportion _cesante""'
-  .table.masks     = `""%""'
+  .table.cmds      = "{proportion _cesante}"
+  .table.masks     = "{%}"
   * Dominios
   .table.years     = "2010 2011 2012 2013 2014 2015"
   .table.months    = "1 2 3 4 5 6 7 8 9 10 11 12"
-  .table.subpop    = "if (_pea == 1) & inlist(_rama1_v1, $sector, $nacion)"
+  .table.subpops   = "{if (_pea == 1) & inlist(_rama1_v1, $sector, 1e6)}"
   .table.by        = "_cesante"
   .table.along     = "_rama1_v1"
-  .table.aggregate = "_rama1_v1"
+  .table.aggregate = "{_rama1_v1}"
   * Estructura
   .table.rowvar    = "año mes"
   .table.colvar    = "_rama1_v1"

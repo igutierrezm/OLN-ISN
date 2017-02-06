@@ -15,7 +15,7 @@
   * Dominios
   .table.years     = "2010 2015"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "{if _ocupado == 1}"
+  .table.subpops   = "{if _ocupado == 1}"
   .table.by        = "_educ"
   .table.along     = "_rama1_v1"
   .table.aggregate = "{_educ} {_rama1_v1} {_educ _rama1_v1}"

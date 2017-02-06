@@ -17,7 +17,7 @@
   * Dominios
   .table.years     = "2015"
   .table.months    = "2 5 8 11"
-  .table.subpops   = "if _rama1_v1 == 1"
+  .table.subpops   = "{if _rama1_v1 == 1}"
   .table.by        = "_cise_v3"
   .table.along     = "`tem'"
   .table.aggregate = "{_cise_v3} {`tem'} {_cise_v3 `tem'}"

@@ -11,15 +11,15 @@
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = `""proportion _rama1_v1""'
-  .table.masks     = `""% de ocupados""'
+  .table.cmds      = "{proportion _rama1_v1}"
+  .table.masks     = "{% de ocupados}"
   * Dominios
   .table.years     = "2015"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "if _ocupado == 1"
+  .table.subpop    = "{if _ocupado == 1}"
   .table.by        = "_rama1_v1"
   .table.along     = ""
-  .table.aggregate = "_rama1_v1"
+  .table.aggregate = "{_rama1_v1}"
   * Estructura
   .table.rowvar    = "_rama1_v1"
   .table.colvar    = "mask"
