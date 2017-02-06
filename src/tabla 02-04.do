@@ -17,20 +17,21 @@ save `df', emptyok
   * Abreviaciones
   local tem "_tamaño_empresa"
   * Estadísticas
-  .table.cmds      = "(proportion `tem')"
-  .table.masks     = "%"
+  .table.cmds      = "{proportion `tem'}"
+  .table.masks     = "{%}"
   * Dominios
   .table.years     = "2015"
   .table.months    = "11"
-  .table.subpop    = "if _rama1_v1 == $sector"
+  .table.subpops   = "{if _rama1_v1 == $sector}"
   .table.by        = "`tem'"
   .table.along     = "_region_re_v1"
-  .table.aggregate = "(_region_re_v1) (`tem') (`tem' _region_re_v1)"
+  .table.aggregate = "{_region_re_v1} {`tem'} {`tem' _region_re_v1}"
   * Estructura
   .table.rowvar    = "_region_re_v1"
   .table.colvar    = "`tem'"
   * I-O
   .table.src       = "ene"
+  .table.from      = "$datos"
   .table.varlist0  = "_ocupado _rama1_v1 _region_re_v1 `tem'"
   cls
 

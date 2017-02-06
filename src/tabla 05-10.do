@@ -15,26 +15,27 @@ save `df', emptyok
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = "(proportion _cise_v3)"
-  .table.masks     = "%"
+  .table.cmds      = "{proportion _cise_v3}"
+  .table.cmds_lb   = "{%}"
 	* Dominios
   .table.years     = "2015"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "[delayed]"
+  .table.subpops   = "[delayed]"
 	.table.by        = "_cise_v3"
   .table.along     = "_oficio1 _rama1_v1"
-  .table.aggregate = "(_cise_v3) (_oficio1) (_cise_v3 _oficio1)"
+  .table.aggregate = "{_cise_v3} {_oficio1} {_cise_v3 _oficio1}"
   * Estructura
   .table.rowvar    = "_oficio1"
   .table.colvar    = "_cise_v3"
   * I-O
   .table.src       = "ene"
+  .table.from      = "$datos"
 	.table.varlist0  = "_cise_v3 _ocupado _oficio1 _rama1_v1"
 
 * Estimación
 forvalues i = 1(1)13 {
     * Especificación
-    .table.subpop = "if (_ocupado == 1) & (_cise_v3 != 3) & (_rama1_v1 == `i')"
+    .table.subpops = "{if (_ocupado == 1) & (_cise_v3 != 3) & (_rama1_v1 == `i')}"
     * Estimación
     .table.create
     .table.annualize

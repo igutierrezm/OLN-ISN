@@ -21,19 +21,20 @@ save `df', emptyok
 .table = .ol_table.new
   * Estadísticas
   .table.cmds      = "[delayed]"
-  .table.masks     = "[delayed]"
+  .table.cmds_lb   = "[delayed]"
 	* Dominios
   .table.years     = "2015"
   .table.months    = ""
-  .table.subpop    = "[delayed]"
+  .table.subpops   = "[delayed]"
 	.table.by        = "_oficio4"
   .table.along     = "_rama1_v1"
-  .table.aggregate = "_oficio4"
+  .table.aggregate = "{_oficio4}"
   * Estructura
   .table.rowvar    = "_oficio4"
-  .table.colvar    = "mask"
+  .table.colvar    = "cmd_lb"
   * I-O
   .table.src       = "casen"
+  .table.from      = "$datos"
 	.table.varlist0  = "[delayed]"
 
 * Estimación
@@ -41,14 +42,14 @@ forvalues j = 1(1)13 {
   local i = 1
   foreach var in _edad _esc _yprincipal _mujer _capacitado _oficio4 {
     * Especificación (act)
-    if (`i' != 6) .table.cmds = "(mean `var')"
-    if (`i' == 6) .table.cmds = "(proportion `var')"
-    .table.subpop   = "if (_rama1_v1 == `j') & (`var' != 1e5)"
+    if (`i' != 6) .table.cmds = "{mean `var'}"
+    if (`i' == 6) .table.cmds = "{proportion `var'}"
+    .table.subpops  = "{if (_rama1_v1 == `j') & (`var' != 1e5)}"
     .table.varlist0 = "_ocupado _oficio4 _rama1_v1 `var'"
     * Estimación
     .table.create
     * Homologación
-    replace mask = `i'
+    replace cmd_lb = `i'
     local ++i
 
     * Anexión
@@ -56,12 +57,12 @@ forvalues j = 1(1)13 {
     save `df', replace
   }
 }
-replace bh = 100^1 * bh if inlist(mask, 4, 5)
-replace o2 = 100^2 * bh if inlist(mask, 4, 5)
+replace bh = 100^1 * bh if inlist(cmd_lb, 4, 5)
+replace o2 = 100^2 * bh if inlist(cmd_lb, 4, 5)
 
 * Etiquetado
 # delimit ;
-  label define mask
+  label define cmd_lb
     1 "Edad promedio"
     2 "Escolaridad promedio"
     3 "Ingreso promedio de la ocupación principal"
@@ -75,9 +76,9 @@ save "$proyecto/data/tabla 05-11.dta", replace
 * Exportación
 *use "$proyecto/data/tabla 05-11.dta", clear
 /* keep if (_rama1_v1 == $sector)
-keep _oficio4 mask bh o2 cv
+keep _oficio4 cmd_lb bh o2 cv
 save `df', replace
-keep if (mask == 6)
+keep if (cmd_lb == 6)
 gsort -bh
 generate ranking = _n
 merge 1:m oficio4 using `df', no generate */

@@ -10,20 +10,21 @@
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = "(proportion _tamaño_empresa)"
-  .table.masks     = "%"
+  .table.cmds      = "{proportion _tamaño_empresa}"
+  .table.cmds_lb   = "{%}"
   * Dominios
   .table.years     = "2010 2011 2012 2013 2014 2015"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "if (_ocupado == 1)"
+  .table.subpops   = "{if (_ocupado == 1)}"
   .table.by        = "_tamaño_empresa"
   .table.along     = "_rama1_v1"
-  .table.aggregate = "_tamaño_empresa"
+  .table.aggregate = "{_tamaño_empresa}"
   * Estructura
   .table.rowvar    = "_tamano_empresa"
   .table.colvar    = "año"
   * I-O
   .table.src       = "ene"
+  .table.from      = "$datos"
   .table.varlist0  = "_ocupado _tamaño_empresa _rama1_v1"
 
 * Estimación

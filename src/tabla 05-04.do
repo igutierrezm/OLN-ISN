@@ -19,19 +19,20 @@ save `df', emptyok
 .table = .ol_table.new
   * Estadísticas
   .table.cmds      = "[delayed]"
-  .table.masks     = "%"
+  .table.cmds_lb   = "{%}"
   * Dominios
   .table.years     = "2015"
   .table.months    = "11"
-  .table.subpop    = "if inlist(_cise_v1, 1, 2)"
+  .table.subpops   = "{if inlist(_cise_v1, 1, 2)}"
 	.table.by        = "[delayed]"
   .table.along     = "_rama1_v1 _cise_v1"
-  .table.aggregate = "_rama1_v1"
+  .table.aggregate = "{_rama1_v1}"
   * Estructura
-  .table.rowvar    = "mask"
+  .table.rowvar    = "cmd_lb"
   .table.colvar    = "_rama1_v1 _cise_v1"
   * I-O
   .table.src       = "casen"
+  .table.from      = "$datos"
 	.table.varlist0  = "[delayed]"
 
 * Estimación
@@ -39,14 +40,14 @@ local i = 1
 foreach var in _boleta _cotiza_pension _cotiza_salud {
   * Especificación
   .table.by       = "`var'"
-  .table.cmds     = "(proportion `var')"
+  .table.cmds     = "{proportion `var'}"
 	.table.varlist0 = "_cise_v1 _rama1_v1 `var'"
 	* Estimación
 	.table.create
   .table.annualize
   * Homologación
   rename `var' categoria
-  replace mask = `i'
+  replace cmd_lb = `i'
   * Anexión
   local ++i
   append using `df'
@@ -54,13 +55,13 @@ foreach var in _boleta _cotiza_pension _cotiza_salud {
 }
 
 * Etiquetado
-label variable mask "% de trabajadores independientes que ..."
-label define mask                                    ///
+label variable cmd_lb "% de trabajadores independientes que ..."
+label define cmd_lb                                    ///
   1 "... están entregando boleta o factura"          ///
   2 "... están cotizando en el sistema previsional"  ///
   3 "... están cotizando en el sistema de salud",    ///
   modify
-label values mask mask
+label values cmd_lb cmd_lb
 
 * GUardado
 save "$proyecto/data/tabla 05-04.dta", replace

@@ -21,17 +21,18 @@ save `df', emptyok
   * Abreviaciones
   local tem "_tamaño_empresa"
   * Estadísticas
-  .table.cmds      = "(total _counter) (proportion `tem')"
-  .table.masks     = "(n) (%)"
+  .table.cmds      = "{total _counter} {proportion `tem'}"
+  .table.cmds_lb   = "{n} (%}"
   * Dominios
   .table.years     = "2014"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "if (_ocupado == 1) & (`tem' != 0)"
+  .table.subpops   = "{if (_ocupado == 1) & (`tem' != 0)}"
   .table.by        = "`tem'"
   .table.along     = "_rama1_v1"
-  .table.aggregate = "(`tem') (_rama1_v1) (`tem' _rama1_v1)"
+  .table.aggregate = "{`tem'} {_rama1_v1} {`tem' _rama1_v1}"
   * I-O
   .table.src       = "ene"
+  .table.from      = "$datos"
   .table.varlist0  = "_ocupado _rama1_v1 `tem'"
 
 * Estimación
@@ -53,15 +54,15 @@ save "`df'", replace
   * Abreviaciones
   local tem "_tamaño_empresa"
   * Estadísticas
-  .table.cmds      = "(total _counter) (proportion `tem')"
-  .table.masks     = "(n) (%)"
+  .table.cmds      = "{total _counter} {proportion `tem'}"
+  .table.masks     = "{n} {%}"
   * Dominios
   .table.years     = "2014"
   .table.months    = ""
-  .table.subpop    = ""
+  .table.subpops   = ""
   .table.by        = "`tem'"
   .table.along     = "_rama1_v1"
-  .table.aggregate = "(`tem') (_rama1_v1) (`tem' _rama1_v1)"
+  .table.aggregate = "{`tem'} {_rama1_v1} {`tem' _rama1_v1}"
   * I-O
   .table.src       = "sii"
   .table.varlist0  = "_rama1_v1 `tem'"

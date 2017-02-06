@@ -10,20 +10,21 @@
 * Especificación
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = "(mean _yprincipal)"
-  .table.masks     = "(%)"
+  .table.cmds      = "{mean _yprincipal}"
+  .table.cmds_lb   = "{%}"
   * Dominios
   .table.years     = "2010 2015"
   .table.months    = ""
-  .table.subpop    = "if (_mantuvo_empleo == 1) & (_cise_v3 != 3)"
+  .table.subpops   = "{if (_mantuvo_empleo == 1) & (_cise_v3 != 3)}"
   .table.by        = "_cise_v3"
   .table.along     = "_rama1_v1"
-  .table.aggregate = "(_cise_v3) (_rama1_v1) (_cise_v3 _rama1_v1)"
+  .table.aggregate = "{_cise_v3} {_rama1_v1} {_cise_v3 _rama1_v1}"
   * Estructura
   .table.rowvar    = "_cise_v3"
   .table.colvar    = "año _rama1_v1"
   * I-O
   .table.src       = "esi"
+  .table.from      = "$datos"
   .table.varlist0  = "_cise_v3 _mantuvo_empleo _rama1_v1 _yprincipal"
 
 * Estimación

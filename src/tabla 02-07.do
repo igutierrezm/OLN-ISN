@@ -12,20 +12,21 @@
   * Abreviaciones
   local tem "_tamaño_empresa"
   * Estadísticas
-  .table.cmds      = "(mean _yprincipal)"
-  .table.masks     = "M$"
+  .table.cmds      = "{mean _yprincipal}"
+  .table.cmds_lb   = "{M$}"
   * Dominios
   .table.years     = "2015"
   .table.months    = ""
-  .table.subpop    = "if (_rama1_v1 == $sector) & (_mantuvo_empleo == 1)"
+  .table.subpops   = "{if (_rama1_v1 == $sector) & (_mantuvo_empleo == 1)}"
   .table.by        = "_cise_v3"
   .table.along     = "`tem'"
-  .table.aggregate = "(_cise_v3) (`tem') (_cise_v3 `tem')"
+  .table.aggregate = "{_cise_v3} {`tem'} {_cise_v3 `tem'}"
   * Estructura
   .table.rowvar    = "_cise_v3"
   .table.colvar    = "`tem'"
   * I-O
   .table.src       = "esi"
+  .table.from      = "$datos"
   .table.varlist0  = "_cise_v3 _mantuvo_empleo _rama1_v1 `tem' _yprincipal"
 
 * Estimación

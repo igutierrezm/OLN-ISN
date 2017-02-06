@@ -12,20 +12,21 @@
   * Abreviaciones
   local tem "_tamaño_empresa"
   * Estadísticas
-  .table.cmds      = "(proportion _educ)"
-  .table.masks     = "%"
+  .table.cmds      = "{proportion _educ}"
+  .table.cmds_lb   = "{%}"
   * Dominios
   .table.years     = "2015"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "if _rama1_v1 == $sector"
+  .table.subpops   = "{if _rama1_v1 == $sector}"
   .table.by        = "_educ"
   .table.along     = "`tem'"
-  .table.aggregate = "(_educ) (`tem') (`tem' _educ)"
+  .table.aggregate = "{_educ} {`tem'} {`tem' _educ}"
   * Estructura
   .table.rowvar    = "_educ"
   .table.colvar    = "`tem'"
   * I-O
   .table.src       = "ene"
+  .table.from      = "$datos"
   .table.varlist0  = "_educ _ocupado _rama1_v1 `tem'"
   cls
 

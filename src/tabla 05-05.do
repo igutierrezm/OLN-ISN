@@ -10,20 +10,21 @@
 * Especificación (init)
 .table = .ol_table.new
   * Estadísticas
-  .table.cmds      = "(mean _yprincipal)"
-  .table.masks     = "M$"
+  .table.cmds      = "{mean _yprincipal}"
+  .table.cmds_lb   = "{M$}"
 	* Dominios
   .table.years     = "2010 2015"
   .table.months    = ""
-  .table.subpop    = "if (_ocupado == 1)"
+  .table.subpops   = "{if (_ocupado == 1)}"
 	.table.by        = "_educ"
   .table.along     = "_rama1_v1"
-  .table.aggregate = "(_educ) (_rama1_v1) (_educ _rama1_v1)"
+  .table.aggregate = "{_educ} {_rama1_v1} {_educ _rama1_v1}"
   * Estructura
   .table.rowvar    = "_educ"
   .table.colvar    = "_rama1_v1 año"
   * I-O
   .table.src       = "esi"
+  .table.from      = "$datos"
 	.table.varlist0  = "_educ _mantuvo_empleo _ocupado _rama1_v1 _yprincipal"
 
 * Estimación

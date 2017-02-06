@@ -18,19 +18,20 @@ save "`df'", emptyok
 .table = .ol_table.new
   * Estadísticas
   .table.cmds      = "[delayed]"
-  .table.masks     = "[delayed]"
+  .table.cmds_lb   = "[delayed]"
 	* Dominios
   .table.years     = "2010 2015"
   .table.months    = "2 5 8 11"
-  .table.subpop    = "if (_ocupado == 1) & (_cise_v1 != 3)"
+  .table.subpops   = "{if (_ocupado == 1) & (_cise_v1 != 3)}"
 	.table.by        = "[delayed]"
   .table.along     = "_cise_v1 _rama1_v1"
-  .table.aggregate = "(_cise_v1) (_rama1_v1) (_cise_v1 _rama1_v1)"
+  .table.aggregate = "{_cise_v1} {_rama1_v1} {_cise_v1 _rama1_v1}"
   * Estructura
   .table.rowvar    = "_cise_v1 año"
-  .table.colvar    = "_rama1_v1 mask"
+  .table.colvar    = "_rama1_v1 cmd_lb"
   * I-O
   .table.src       = "ene"
+  .table.from      = "$datos"
 	.table.varlist0  = "[delayed]"
 
 * Estimación
@@ -38,14 +39,14 @@ local i = 1
 foreach var in _jparcial_inv _exceso_hr_int {
   * Especificación
 	.table.varlist0  = "_cise_v1 _ocupado _rama1_v1 `var'"
-  .table.cmds      = "(proportion `var')"
+  .table.cmds      = "{proportion `var'}"
   .table.by        = "`var'"
   * Estimación
   .table.create
   .table.annualize
   * Homologación
   rename `var' categoria
-  replace mask = `i'
+  replace cmd_lb = `i'
   local ++i
   * Anexión
   append using "`df'"
@@ -53,9 +54,9 @@ foreach var in _jparcial_inv _exceso_hr_int {
 }
 
 * Etiquetado
-label define mask 1 "Subempleo",       modify
-label define mask 2 "Horas excesivas", modify
-label values mask mask
+label define cmd_lb 1 "Subempleo",       modify
+label define cmd_lb 2 "Horas excesivas", modify
+label values cmd_lb cmd_lb
 
 * Guardado
 save "$proyecto/data/tabla 05-06.dta", replace
