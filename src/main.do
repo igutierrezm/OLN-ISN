@@ -18,9 +18,9 @@ foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 	net install ol_tools`pkg', all force from("$pkg/src")
 }
 
-* Ejecución selectiva
+* Ejecución de una consulta/tabla específica
 local folder "consultas"
-local file   "01-01.do"
+local file   "04-03.do"
 do "$proyecto/src/`folder'/`file'"
 beep
 
