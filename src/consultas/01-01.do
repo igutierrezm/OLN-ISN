@@ -9,6 +9,10 @@ replace _mes = mod(_mes + 1, 12)
 * PIB sectorial según sector, año y mes
 collapse (sum) pib, by(_rama1_v1 _año _mes)
 
+* Ajustes finales
+generate cmd_type = "total"
+label variable pib "PIB encadenado (desestacionalizado)"
+
 * Guardado
 save "$proyecto/data/consultas/01-01.dta", replace
 

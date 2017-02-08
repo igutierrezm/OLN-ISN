@@ -19,8 +19,8 @@ foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 }
 
 * Ejecución de una consulta/tabla específica
-local folder "consultas"
-local file   "04-02.do"
+local folder "cuadros"
+local file   "01-01.do"
 do "$proyecto/src/`folder'/`file'"
 beep
 
