@@ -20,12 +20,12 @@ foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 
 * Ejecución de una consulta/tabla específica
 local folder "consultas"
-local file   "04-03.do"
+local file   "05-11B.do"
 do "$proyecto/src/`folder'/`file'"
 beep
 
 /*** Ejecución completa (no recomendado)
-foreach folder in "consultas "tablas" {
+foreach folder in "consultas" "tablas" {
 	local files : dir "$proyecto/src/`folder'" files "*.do"
 	foreach file of local files {
 		do "$proyecto/src/`folder'/`file'"

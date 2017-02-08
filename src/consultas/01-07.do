@@ -23,6 +23,22 @@ replace o2 = bh / 1000^2
 save "$proyecto/data/consultas/`id'", replace
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 * Estructura
 .table.rowvar    = "año mes"

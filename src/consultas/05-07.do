@@ -3,8 +3,8 @@ local id "05-07"
 
 * Especificación
 .table = .ol_table.new
-.table.cmds       = "{proportion _oficio1}"
-.table.cmds_lb    = "{%}"
+.table.cmds       = "{total _counter} {proportion _oficio1}"
+.table.cmds_lb    = "{N} {%}"
 .table.years      = "2010 2016"
 .table.months     = "2 5 8 11"
 .table.subpops    = "{if _ocupado == 1}"

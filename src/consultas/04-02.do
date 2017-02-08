@@ -12,8 +12,8 @@ foreach var1 in "" "_mujer" {
 
 * Especificación
 .table = .ol_table.new
-.table.cmds       = "{proportion _tramo_edad_v1}"
-.table.cmds_lb    = "{%}"
+.table.cmds       = "{total _counter} {proportion _tramo_edad_v1}"
+.table.cmds_lb    = "{N} {%}"
 .table.years      = "2010 2016"
 .table.months     = "2 5 8 11"
 .table.subpops    = "{if _ocupado == 1}"

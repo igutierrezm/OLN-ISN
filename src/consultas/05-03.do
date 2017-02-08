@@ -4,7 +4,7 @@ local id "05-03"
 * Especificación
 .table = .ol_table.new
 .table.cmds       = "."
-.table.cmds_lb    = "{%}"
+.table.cmds_lb    = "{N} {%}"
 .table.years      = "2010 2016"
 .table.months     = "2 5 8 11"
 .table.subpops    = "{if _asalariado == 1}"
@@ -19,7 +19,7 @@ local id "05-03"
 * Estimación
 forvalues i = 1(1)7 {
   .table.by   = "_b7_`i'"
-  .table.cmds = "{proportion _b7_`i'}"
+  .table.cmds = "{total _counter} {proportion _b7_`i'}"
   .table.create
   save "$proyecto/data/consultas/`id' [`i'].dta", replace
 }

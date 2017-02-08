@@ -1,6 +1,10 @@
 * Macros auxiliares
-local id      "04-01"
-local cmds_lb `""Edad promedio" "Escolaridad promedio" "Ingreso promedio de la ocupación principal" "Educación superior completa (%)" "Mujeres (%)""'
+local id       "04-01"
+local cmds_lb1 "{Edad promedio}"
+local cmds_lb2 "{Escolaridad promedio}"
+local cmds_lb3 "{Ingreso promedio de la ocupación principal}"
+local cmds_lb4 "{N} {%}"
+local cmds_lb5 "{N} {%}"
 
 * Especificación
 .table = .ol_table.new
@@ -21,13 +25,13 @@ local cmds_lb `""Edad promedio" "Escolaridad promedio" "Ingreso promedio de la o
 local i = 1
 foreach var in "_edad" "_esc" "_yprincipal" "_superior_completa" "_mujer" {
   .table.varlist0 = "_ocupado _oficio1 _rama1_v1 `var'"
-  .table.cmds_lb  = "{`:word `i' of `cmds_lb''}"
+  .table.cmds_lb  = "`cmds_lb`i''"
   if (`i' <= 3) {
     .table.cmds = "{mean `var'}"
     .table.by   = ""
   }
   else {
-    .table.cmds = "{proportion `var'}"
+    .table.cmds = "{total _counter} {proportion `var'}"
     .table.by   = "`var'"
   }
   .table.create

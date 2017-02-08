@@ -3,8 +3,8 @@ local id "05-10"
 
 * Especificación
 .table = .ol_table.new
-.table.cmds       = "{proportion _cise_v3}"
-.table.cmds_lb    = "{%}"
+.table.cmds       = "{total _counter} {proportion _cise_v3}"
+.table.cmds_lb    = "{N} {%}"
 .table.years      = "2016"
 .table.months     = "2 5 8 11"
 .table.subpops    = "."
@@ -17,11 +17,16 @@ local id "05-10"
 .table.varlist0   = "_cise_v3 _ocupado _oficio1 _rama1_v1"
 
 * Estimación
+drop _all
+tempfile df
+save `df', emptyok
 forvalues i = 1(1)13 {
-    .table.subpops = "{if (_ocupado == 1) & (_rama1_v1 == `i')}"
-    .table.create
-    save "$proyecto/data/consultas/`id'.dta", replace
+  .table.subpops = "{if (_ocupado == 1) & (_rama1_v1 == `i')}"
+  .table.create
+  append using `df'
+  save `df', replace
 }
+save "$proyecto/data/consultas/`id'.dta", replace
 
 
 

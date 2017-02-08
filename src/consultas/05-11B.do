@@ -1,7 +1,21 @@
-/*
 * Macros auxiliares
-local id "05-11"
-local cmds_lb `""Edad promedio" "Escolaridad promedio" "Ingreso promedio de la ocupación principal" "% mujeres" "% capacitados" "n.""'
+local id "05-11B"
+local cmds_lb1 "{Edad promedio}"
+local cmds_lb2 "{Escolaridad promedio}"
+local cmds_lb3 "{Ingreso promedio de la ocupación principal}"
+local cmds_lb4 "{N} {%}"
+local cmds_lb5 "{N} {%}"
+
+* Más macros auxiliares - Top 10 de los oficios, según sector
+forvalues j = 1(1)13 {
+  use "$proyecto/data/consultas/05-11A.dta", clear
+  keep if (_rama1_v1 == `j')
+  local top10_`j' = _oficio4[1]
+  forvalues k = 1(1)10 {
+    local member_k  = _oficio4[`k']
+    local top10_`j' = "`top10_`j'', `member_k'"
+  }
+}
 
 * Especificación
 .table = .ol_table.new
@@ -10,8 +24,8 @@ local cmds_lb `""Edad promedio" "Escolaridad promedio" "Ingreso promedio de la o
 .table.years      = "2015"
 .table.months     = ""
 .table.subpops    = "."
-.table.subpops_lb = "{Ocupados}"
-.table.by         = ""
+.table.subpops_lb = "."
+.table.by         = "."
 .table.along      = "_oficio4 _rama1_v1"
 .table.aggregate  = ""
 .table.src        = "casen"
@@ -19,32 +33,32 @@ local cmds_lb `""Edad promedio" "Escolaridad promedio" "Ingreso promedio de la o
 .table.varlist0   = "."
 
 * Estimación
-forvalues i = 1(1)13 {
-  local j = 1
-  foreach var in _edad _esc _yprincipal _mujer _capacitado _counter {
-    .table.subpops = "{if (_rama1_v1 == `j')}"
-    .table.cmds_lb = "{`:word `i' of `cmds_lb''}"
-    if (`j' <= 6) {
-      .table.by       = ""
-      .table.cmds     = "{total `var'}"
-      .table.varlist0 = "_oficio4 _rama1_v1"
+local i = 1
+foreach var in _edad _esc _yprincipal _mujer _capacitado {
+  * Inicializacion de la BBDD
+  drop _all
+  tempfile df`i'
+  save `df`i'', emptyok replace
+  forvalues j = 1(1)13 {
+    .table.subpops = "{if (_rama1_v1 == `j') & inlist(_oficio4, `top10_`j'')}"
+    .table.varlist0   = "_oficio4 _rama1_v1 `var'"
+    .table.subpops_lb = "{Ocupados}"
+    .table.cmds_lb    = "`cmds_lb`i''"
+    if (`i' <= 5) {
+      .table.by   = "`var'"
+      .table.cmds = "{total _counter} {proportion `var'}"
     }
-    if (`j' <= 5) {
-      .table.by       = "{`var'}"
-      .table.cmds     = "{proportion `var'}"
-      .table.varlist0 = "_oficio4 _rama1_v1 `var'"
-    }
-    if (`j' <= 3) {
+    if (`i' <= 3) {
       .table.by   = ""
       .table.cmds = "{mean `var'}"
     }
     .table.create
-    save "$proyecto/data/consultas/`id' [`i'] [`j'].dta", replace
-    local ++j
+    append using `df`i''
+    save `df`i'', replace
   }
+  save "$proyecto/data/consultas/`id' [`i'].dta", replace
+  local ++i
 }
-*/
-
 
 
 
