@@ -9,6 +9,7 @@ foreach var1 in "" "_mujer" {
     }
   }
 }
+display as error "`aggregate'"
 
 * Especificación
 .table = .ol_table.new
@@ -28,7 +29,6 @@ foreach var1 in "" "_mujer" {
 * Estimación
 .table.create
 save "$proyecto/data/consultas/`id'.dta", replace
-
 
 
 

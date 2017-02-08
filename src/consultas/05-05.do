@@ -19,28 +19,3 @@ local id "05-05"
 * Estimación
 .table.create
 save "$proyecto/data/consultas/`id'.dta", replace
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-* Estructura
-.table.rowvar    = "_educ"
-.table.colvar    = "_rama1_v1 año"
-
-* Exportación
-keep if inlist(_rama1_v1, $sector, 1e6)
-.table.export_excel bh, file("$proyecto/data/tabla 05-05.xlsx")
-.table.export_excel cv, file("$proyecto/data/tabla 05-05.xlsx")
-*/

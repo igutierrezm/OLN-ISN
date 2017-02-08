@@ -19,39 +19,3 @@ local id "05-07"
 * Estimación
 .table.create
 save "$proyecto/data/consultas/`id'.dta", replace
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-.table.rowvar     = "_oficio1"
-.table.colvar     = "_rama1_v1 año"
-
-
-*/
