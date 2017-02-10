@@ -18,15 +18,15 @@ forvalues j = 1(1)2 {
 		* Ajustes preliminares
 		use "`origen'/`id' [`k'].dta", clear
 		drop if (cmd_type == "proportion")
-		
+
 		* Agregación y creación de proporciones (hay dos métodos)
 		.table.annualize_v`j', over("_rama1_v1 _b7_`k'")
 		.table.as_proportion, by("_b7_`k'") along("_rama1_v1")
 		keep if (_b7_`k' == 1)
 		drop _b7_`k'
-		
+
 		* Anexión
-		replace cmd_lb = `k' 
+		replace cmd_lb = `k'
 		append using `df`j''
 		save `df`j'', replace
 	}
@@ -44,14 +44,14 @@ forvalues j = 1(1)2 {
 			modify;
 	# delimit cr
 	label values cmd_lb cmd_lb
-	
+
 	* Guardado
 	save `df`j'', replace
 }
 
 * Exportación del cuadro
-forvalues i = 1(1)1 {
-	forvalues j = 1(1)1 {
+forvalues i = 1(1)13 {
+	forvalues j = 1(1)2 {
 		* BBDD
 		use `df`j'', clear
 		keep if inlist(_rama1_v1, `i', 1e6)
@@ -60,14 +60,17 @@ forvalues i = 1(1)1 {
 		local name : label _rama1_v1 `i'
 		label define _rama1_v1 `i' "Sector", modify
 
-		* Exportación (cuerpo)
-		local file "`destino'/`name'/bh [`j'].xlsx"
-		.table.export_excel bh, file("`file'") sheet("`id'")
-		*.table.export_excel cv, file("`file'") sheet("`id'")
+		* Exportación
+		foreach var in bh cv {
+			* Cuerpo
+			local file "`destino'/`name'/`var' [`j'].xlsx"
+			.table.export_excel `var', file("`file'") sheet("`id'")
 
-		* Título
-		local msg = "5.3. Indicadores de seguridad social de trabajadores dependientes del sector `name', 2010 y 2016."
-		putexcel set "`file'", sheet("`id'") modify
-		putexcel A1 = "`msg'", font("Times New Roman", 11) bold
+			* Título
+			putexcel set "`file'", sheet("`id'") modify
+			putexcel A1 = ///
+				"5.3. Indicadores de seguridad social de trabajadores dependientes del sector `name' según género, 2010 y 2016", ///
+				font("Times New Roman", 11) bold
+		}
 	}
 }

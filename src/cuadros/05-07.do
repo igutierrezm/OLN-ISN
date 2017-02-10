@@ -9,8 +9,8 @@ local destino "$proyecto/data/cuadros"
 .table.colvar = "_rama1_v1 año"
 
 * Exportación
-forvalues i = 1(1)1 {
-	forvalues j = 1(1)1 {
+forvalues i = 1(1)13 {
+	forvalues j = 1(1)2 {
 		* Preparación de la BBDD
 		use "`origen'/`id'.dta", clear
 		keep if (cmd_type != "proportion")
@@ -19,19 +19,22 @@ forvalues i = 1(1)1 {
 		* Agregación y creación de proporciones (hay dos métodos)
 		.table.annualize_v`j', over("_rama1_v1 _oficio1")
 		.table.as_proportion, by("_oficio1") along("_rama1_v1")
-		
+
 		* Identificación del nombre del sector
 		local name : label _rama1_v1 `i'
 		label define _rama1_v1 `i' "Sector", modify
 
-		* Exportación (cuerpo)
-		local file "`destino'/`name'/bh [`j'].xlsx"
-		.table.export_excel bh, file("`file'") sheet("`id'")
-		*.table.export_excel cv, file("`file'") sheet("`id'")
+		* Exportación
+		foreach var in bh cv {
+			* Cuerpo
+			local file "`destino'/`name'/`var' [`j'].xlsx"
+			.table.export_excel `var', file("`file'") sheet("`id'")
 
-		* Título
-		local msg = "5.7. Distribución de ocupados del sector `name' por tipo de ocupación, 2010 y 2016"
-		putexcel set "`file'", sheet("`id'") modify
-		putexcel A1 = "`msg'", font("Times New Roman", 11) bold
+			* Título
+			putexcel set "`file'", sheet("`id'") modify
+			putexcel A1 = ///
+				"5.7. Distribución de ocupados del sector `name' por tipo de ocupación, 2010 y 2016", ///
+				font("Times New Roman", 11) bold
+		}
 	}
 }

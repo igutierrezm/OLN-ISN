@@ -24,8 +24,8 @@ forvalues j = 1(1)2 {
 }
 
 * Exportación
-forvalues i = 1(1)1 {
-	forvalues j = 1(1)1 {
+forvalues i = 1(1)13 {
+	forvalues j = 1(1)2 {
 		* Preparación de la BBDD
 		use `df`j'', clear
 		keep if inlist(_rama1_v1, `i')
@@ -34,14 +34,17 @@ forvalues i = 1(1)1 {
 		local name : label _rama1_v1 `i'
 		label define _rama1_v1 `i' "Sector", modify
 
-		* Exportación (cuerpo)
-		local file "`destino'/`name'/bh [`j'].xlsx"
-		.table.export_excel bh, file("`file'") sheet("`id'")
-		*.table.export_excel cv, file("`file'") sheet("`id'")
+    * Exportación
+		foreach var in bh cv {
+			* Cuerpo
+			local file "`destino'/`name'/`var' [`j'].xlsx"
+			.table.export_excel `var', file("`file'") sheet("`id'")
 
-		* Título
-		local msg = "4.2. Ocupados del sector `name' por tramo de edad y sexo, 2010 y 2016"
-		putexcel set "`file'", sheet("`id'") modify
-		putexcel A1 = "`msg'", font("Times New Roman", 11) bold
+			* Título
+			putexcel set "`file'", sheet("`id'") modify
+			putexcel A1 = ///
+				"4.2. Ocupados del sector `name' por tramo de edad y sexo, 2010 y 2016", ///
+				font("Times New Roman", 11) bold
+		}
 	}
 }
