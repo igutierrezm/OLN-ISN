@@ -18,22 +18,12 @@ foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 	net install ol_tools`pkg', all force from("$pkg/src")
 }
 
-/***
-* Ejecución de una consulta/tabla específica
-local folder "cuadros"
-local file   "02-06.do"
-do "$proyecto/src/`folder'/`file'"
-beep
-***/
-
-/***/
-* Ejecución completa
+* Consultas y cuadros
 foreach folder in "cuadros" {
-	local files : dir "$proyecto/src/`folder'" files "05-*.do"
+	local files : dir "$proyecto/src/`folder'" files "01-*.do"
 	foreach file of local files {
 	display as error "`file'"
-		do "$proyecto/src/`folder'/`file'"
+		noisily : do "$proyecto/src/`folder'/`file'"
 	}
 }
 beep
-/***/

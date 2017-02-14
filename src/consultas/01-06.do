@@ -5,6 +5,7 @@ local id "01-06"
 * Panel N°1 - Ocupados
 *===============================================================================
 
+/***
 * Especificación
 .table = .ol_table.new
 .table.cmds       = "{total _counter} {proportion _rama1_v2}"
@@ -23,6 +24,7 @@ local id "01-06"
 * Estimación
 .table.create
 save "$proyecto/data/consultas/`id' [1].dta", replace
+***/
 
 *===============================================================================
 * Panel N°2 - PIB

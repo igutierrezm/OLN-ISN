@@ -5,7 +5,7 @@ local cmds_lb2 "{Escolaridad promedio}"
 local cmds_lb3 "{Ingreso promedio de la ocupación principal}"
 local cmds_lb4 "{N} {%}"
 local cmds_lb5 "{N} {%}"
-
+ 
 * Especificación
 .table = .ol_table.new
 .table.cmds       = "."
@@ -24,7 +24,7 @@ local cmds_lb5 "{N} {%}"
 * Estimación
 local i = 1
 foreach var in "_edad" "_esc" "_yprincipal" "_superior_completa" "_mujer" {
-  .table.varlist0 = "_ocupado _oficio1 _rama1_v1 `var'"
+  .table.varlist0 = "_ocupado _rama1_v1 `var'"
   .table.cmds_lb  = "`cmds_lb`i''"
   if (`i' <= 3) {
     .table.cmds = "{mean `var'}"

@@ -14,17 +14,17 @@ forvalues j = 1(1)2 {
 	* Ajustes preliminares
   use "`origen'/`id' [1].dta", clear
   keep if (cmd_type != "proportion")
-
+	
 	* Agregación (recordar que hay dos métodos)
 	.table.annualize_v`j', over("_rama1_v1 _tamaño_empresa_v1")
-	
+
 	* Anexión N°1
 	replace cmd_lb = 1
   save `df`j'', replace
 
-  * Conversiones de totales a proporciones 
+  * Conversiones de totales a proporciones
   .table.as_proportion, by("_tamaño_empresa_v1") along("_rama1_v1")
-	
+
   * Anexión N°2
 	replace cmd_lb = 2
   append using `df`j''
@@ -35,17 +35,17 @@ forvalues j = 1(1)2 {
 forvalues j = 1(1)2 {
 	* Lectura
 	use "`origen'/`id' [2].dta", clear
-	
+
 	* Corrección de la subpoblación
 	replace subpop_lb = 2
+
+	* Etiquetado
+	label define subpop_lb 1 "Ocupados" 2 "Empresas", modify
 	
 	* Anexión
 	append using `df`j''
 	save `df`j'', replace
-	
-	* Etiquetado
-	label define subpop_lb 1 "Ocupados" 2 "Empresas", modify
-}	
+}
 
 * Exportación
 forvalues i = 1(1)13 {
@@ -67,7 +67,7 @@ forvalues i = 1(1)13 {
 			* Título
 			putexcel set "`file'", sheet("`id'") modify
 			putexcel A1 = ///
-				"2.2. Número de empresas y ocupados por tamaño de empresa según número de trabajadores, incluyendo empresas unipersonales (cuenta propia), 2016", ///
+				"2.2. Número de empresas y ocupados por tamaño de empresa según número de trabajadores, incluyendo empresas unipersonales (cuenta propia), 2014", ///
 				font("Times New Roman", 11) bold
 		}
 	}
