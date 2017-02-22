@@ -4,8 +4,8 @@ local temp "_tamaño_empresa_v1"
 
 * Panel N°1 - Especificación
 .table = .ol_table.new
-.table.cmds       = "{total _counter} {proportion `temp'}"
-.table.cmds_lb    = "{N} {%}"
+.table.cmds       = "{total _counter}"
+.table.cmds_lb    = "{N}"
 .table.years      = "2014"
 .table.months     = "2 5 8 11"
 .table.subpops    = "{if _ocupado == 1}"

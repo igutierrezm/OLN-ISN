@@ -4,8 +4,8 @@ local temp "_tamaño_empresa_v1"
 
 * Especificación
 .table = .ol_table.new
-.table.cmds       = "{total _counter} {proportion _cise_v3}"
-.table.cmds_lb    = "{N} {%}"
+.table.cmds       = "{total _counter}"
+.table.cmds_lb    = "{N}"
 .table.years      = "2016"
 .table.months     = "2 5 8 11"
 .table.subpops    = "."
@@ -28,31 +28,3 @@ forvalues i = 1(1)13 {
   save `df', replace
 }
 save "$proyecto/data/consultas/`id'.dta", replace
-
-
-
-
-
-
-
-
-
-
-
-/*
-.table.rowvar    = "_cise_v3"
-.table.colvar    = "`temp'"
-
-* Estimación
-.table.create
-.table.annualize
-save "$proyecto/data/tabla 02-06.dta", replace
-
-* Exportación
-.table.export_excel bh, file("$proyecto/data/tabla 02-06.xlsx")
-.table.export_excel cv, file("$proyecto/data/tabla 02-06.xlsx")
-
-* Notas al pie
-* ¹ Tamaño de empresa (de acuerdo al número de trabajadores)
-* ² Trabajadores por Cuenta Propia Unipersonales
-*/

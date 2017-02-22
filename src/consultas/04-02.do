@@ -1,5 +1,5 @@
 * Macros auxiliares
-local id        "04-02"
+local id "04-02"
 local aggregate ""
 foreach var1 in "" "_mujer" {
   foreach var2 in "" "_rama1_v1" {
@@ -9,7 +9,6 @@ foreach var1 in "" "_mujer" {
     }
   }
 }
-display as error "`aggregate'"
 
 * Especificación
 .table = .ol_table.new
@@ -29,34 +28,3 @@ display as error "`aggregate'"
 * Estimación
 .table.create
 save "$proyecto/data/consultas/`id'.dta", replace
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-* Estructura
-.table.rowvar    = "_tramo_edad_v1"
-.table.colvar    = "_rama1_v1 año"
-
-
-* Estimación
-.table.create
-.table.annualize
-save "$proyecto/data/tabla 04-02.dta", replace
-
-* Exportación
-keep if inlist(_rama1_v1, $sector, 1e6)
-.table.export_excel bh, file("$proyecto/data/tabla 04-02.xlsx")
-.table.export_excel cv, file("$proyecto/data/tabla 04-02.xlsx")
-
-
-*/

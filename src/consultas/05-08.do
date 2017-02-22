@@ -3,8 +3,8 @@ local id "05-08"
 local cmds_lb1 "{Edad promedio}"
 local cmds_lb2 "{Escolaridad promedio}"
 local cmds_lb3 "{Ingreso promedio de la ocupación principal}"
-local cmds_lb4 "{N} {%}"
-local cmds_lb5 "{N} {%}"
+local cmds_lb4 "{%}"
+local cmds_lb5 "{%}"
 
 * Especificación
 .table = .ol_table.new
@@ -31,7 +31,7 @@ foreach var in "_edad" "_esc" "_yprincipal" "_mujer" "_capacitado" {
     .table.by   = ""
   }
   else {
-    .table.cmds = "{total _counter} {proportion `var'}"
+    .table.cmds = "{proportion `var'}"
     .table.by   = "`var'"
   }
   .table.create

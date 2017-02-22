@@ -19,28 +19,3 @@ local id "04-04"
 * Estimación
 .table.create
 save "$proyecto/data/consultas/`id'.dta", replace
-
-
-
-
-
-
-
-
-
-
-/*
-* Estructura
-.table.rowvar    = "_rama1_v1"
-.table.colvar    = "año"
-
-* Estimación
-.table.create
-.table.annualize
-save "$proyecto/data/tabla 04-04.dta", replace
-
-* Exportación
-keep if (_conmutante_v1 == 1)
-.table.export_excel bh, file("$proyecto/data/tabla 04-04.xlsx")
-.table.export_excel cv, file("$proyecto/data/tabla 04-04.xlsx")
-*/

@@ -27,30 +27,3 @@ forvalues i = 1(1)13 {
   save `df', replace
 }
 save "$proyecto/data/consultas/`id'.dta", replace
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-* Estructura
-.table.rowvar    = "_oficio1"
-.table.colvar    = "_cise_v3"
-
-* Exportación
-keep if inlist(_rama1_v1, $sector)
-.table.export_excel bh, file("$proyecto/data/tabla 05-10.xlsx")
-.table.export_excel cv, file("$proyecto/data/tabla 05-10.xlsx")
-
-
-
-*/

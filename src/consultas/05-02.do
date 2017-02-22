@@ -4,7 +4,7 @@ local id "05-02"
 * Especificación
 .table = .ol_table.new
 .table.cmds       = "{mean _yprincipal}"
-.table.cmds_lb    = "{M$}"
+.table.cmds_lb    = "{$}"
 .table.years      = "2010 2015"
 .table.months     = ""
 .table.subpops    = "{if (_mantuvo_empleo == 1)}"
