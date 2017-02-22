@@ -20,7 +20,7 @@ foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 
 * Consultas y cuadros
 foreach folder in "cuadros" {
-	local files : dir "$proyecto/src/`folder'" files "05-02.do"
+	local files : dir "$proyecto/src/`folder'" files "02-02.do"
 	foreach file of local files {
 	display as error "`file'"
 		noisily : do "$proyecto/src/`folder'/`file'"

@@ -10,9 +10,10 @@ tempfile df1
 .table.colvar = "_rama1_v1 subpop_lb cmd_lb"
 
 * Preparación de la BBDD de Ocupados
-use "`origen'/`id' [1].dta", clear
+use "`origen'/`id' [2].dta", clear
 .table.annualize_v2, over("_rama1_v1 _tamaño_empresa_v1")
 .table.add_asterisks, add_over("_tamaño_empresa_v1")
+replace subpop_lb = 2
 replace cmd_lb = 1
 save `df1', replace
 .table.as_proportion, by("_tamaño_empresa_v1") along("_rama1_v1")
@@ -21,10 +22,11 @@ append using `df1'
 save `df1', replace
 
 * Preparación de la BBDD de Empresas
-use "`origen'/`id' [2].dta", clear
-replace subpop_lb = 2
-label define subpop_lb 1 "Ocupados" 2 "Empresas", modify
+use "`origen'/`id' [1].dta", clear
+replace subpop_lb = 1
 append using `df1'
+label define subpop_lb 1 "Empresas" 2 "Ocupados", modify
+label define cmd_lb 1 "N°" 2 "%", modify
 save `df1', replace
 
 * Exportación
