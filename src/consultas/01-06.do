@@ -7,8 +7,8 @@ local id "01-06"
 
 * Especificación
 .table = .ol_table.new
-.table.cmds       = "{total _counter} {proportion _rama1_v2}"
-.table.cmds_lb    = "{N} {%}"
+.table.cmds       = "{total _counter}"
+.table.cmds_lb    = "{N}"
 .table.years      = "2014"
 .table.months     = "2 5 8 11"
 .table.subpops    = "{if _ocupado == 1}"

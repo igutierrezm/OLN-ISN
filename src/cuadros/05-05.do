@@ -2,6 +2,7 @@
 local id "05-05"
 local origen  "$proyecto/data/consultas"
 local destino "$proyecto/data/cuadros"
+local inflacion = 110.89 / 92.79
 tempfile df1
 
 * Especificación
@@ -11,6 +12,7 @@ tempfile df1
 
 * Preparación de la BBDD
 use "`origen'/`id'.dta", clear
+replace bh = `inflacion' * bh if (año == 2010)
 .table.add_asterisks
 save `df1', replace
 
