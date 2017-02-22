@@ -7,8 +7,8 @@ tempfile df1
 
 * Especificación
 .table = .ol_table.new
-.table.rowvar = "_cise_v3"
-.table.colvar = "año _rama1_v1"
+.table.colvar = "_cise_v3"
+.table.rowvar = "año _rama1_v1"
 
 * Preparación de la BBDD
 use "`origen'/`id'.dta", clear
