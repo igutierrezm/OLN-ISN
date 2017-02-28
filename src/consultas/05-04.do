@@ -1,27 +1,39 @@
-* Macros auxiliares
+* Macros auxiliares y objetos temporales
 local id "05-04"
+local cmd_lb1 "Formalidad de la unidad económica"
+local cmd_lb2 "Cotización previsional"
+local cmd_lb3 "Cotización de salud"
+tempfile df
 
-* Especificación
-.table = .ol_table.new
-.table.cmds       = "."
-.table.cmds_lb    = "{N} {%}"
-.table.years      = "2015"
-.table.months     = ""
-.table.subpops    = "{if inlist(_cise_v1, 1, 2)}"
-.table.subpops_lb = "{Trabajadores Independientes}"
-.table.by         = "."
-.table.along      = "_rama1_v1 _cise_v1"
-.table.aggregate  = "{_rama1_v1}"
-.table.src        = "casen"
-.table.from       = "$datos"
-.table.varlist0   = "."
-
-* Estimación
-forvalues i = 1(1)3 {
-  local var : word `i' of "_boleta" "_cotiza_pension" "_cotiza_salud"
-  .table.by       = "`var'"
-  .table.cmds     = "{total _counter} {proportion `var'}"
+* Loop principal
+drop _all
+local i = 1
+save `df', emptyok
+foreach var in "_boleta" "_cotiza_pension" "_cotiza_salud" {
+  * Especificación
+  .table = .ol_table.new
+  .table.cmds       = "{proportion `var'}"
+  .table.cmds_lb    = "{`i': `cmd_lb`i''}"
+  .table.cmds_fmt   = "{%15,0fc}"
+  .table.years      = "2015"
+  .table.months     = ""
+  .table.subpops    = "{if inlist(_cise_v1, 1, 2)}"
+  .table.subpops_lb = "{1: Trabajadores Independientes}"
+  .table.by         = "`var'"
+  .table.along      = "_rama1_v1 _cise_v1"
+  .table.margins    = "{_rama1_v1}"
+  .table.margins_lb = "{Nacional}"
+  .table.src        = "casen"
+  .table.from       = "$datos"
 	.table.varlist0 = "_cise_v1 _rama1_v1 `var'"
+
+  * Estimación
 	.table.create
-  save "$proyecto/data/consultas/`id' [`i'].dta", replace
+  .table.add_asterisks
+  keep if (`var' == 1)
+  drop `var'
+  append2 using `df'
+  save `df', replace
+  local ++i
 }
+save "$proyecto/data/consultas/`id'.dta", replace

@@ -1,31 +1,21 @@
-* Macros auxiliares
+* Macros auxiliares y objetos temporales
 local id "01-01"
-local origen  "$proyecto/data/consultas"
-local destino "$proyecto/data/cuadros"
-tempfile df1
 
-* Especificación de cuadro
+* Especificación
 .table = .ol_table.new
-.table.rowvar = "_año _mes"
+.table.rowvar = "año mes"
 .table.colvar = "_rama1_v1"
 
-* Preparación de la BBDD
-use "`origen'/`id'.dta", clear
-generate asterisk = ""
-rename pib bh
-save `df1', replace
-
-* Exportación del cuadro
-save "$proyecto/data/cuadros/`id'", replace
+* Exportación
 forvalues i = 1(1)13 {
 	* BBDD
-	use `df1', clear
+	use "$proyecto/data/consultas/`id'.dta", clear
 	keep if inlist(_rama1_v1, `i', 1e6)
 
-	* Identificación del Archivo de destino
+	* Archivo de destino
 	local name : label _rama1_v1 `i'
+	local file "$proyecto/data/cuadros/`name'/bh.xlsx"
 	label define _rama1_v1 `i' "Sector", modify
-	local file "`destino'/`name'/bh.xlsx"
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")

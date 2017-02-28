@@ -1,30 +1,27 @@
-* Macros auxiliares
-local id   "02-05"
-local temp "_tamaño_empresa_v1"
+* Macros auxiliares y objetos temporales
+local id "02-05"
 
 * Especificación
 .table = .ol_table.new
 .table.cmds       = "{total _counter}"
-.table.cmds_lb    = "{N}"
+.table.cmds_lb    = "{1: N}"
+.table.cmds_fmt   = "{%15,0fc}"
 .table.years      = "2016"
 .table.months     = "2 5 8 11"
-.table.subpops    = "."
-.table.subpops_lb = "{Ocupados}"
+.table.subpops    = "{if _ocupado == 1}"
+.table.subpops_lb = "{1: Ocupados}"
 .table.by         = "_educ"
-.table.along      = "_rama1_v1 `temp'"
-.table.aggregate  = "{`temp'} {_educ}  {`temp' _educ}"
+.table.along      = "_rama1_v1 _tamaño_empresa"
+.table.margins    = "{_tamaño_empresa} {_educ}"
+.table.margins_lb = "{Sector} {Total}"
 .table.src        = "ene"
 .table.from       = "$datos"
-.table.varlist0   = "_educ _ocupado _rama1_v1 `temp'"
+.table.varlist0   = "_educ _ocupado _rama1_v1 _tamaño_empresa"
 
 * Estimación
-drop _all
-tempfile df
-save `df', emptyok
-forvalues i = 1(1)13 {
-  .table.subpops = "{if (_ocupado == 1) & (_rama1_v1 == `i')}"
-  .table.create
-  append using `df'
-  save `df', replace
-}
+.table.create
+.table.annualize
+.table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,0fc")
+.table.add_asterisks
+keep if (cmd_lb == 2)
 save "$proyecto/data/consultas/`id'.dta", replace

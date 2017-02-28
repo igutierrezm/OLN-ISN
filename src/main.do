@@ -2,6 +2,7 @@
 
 * Housekeeping
 set scrollbufsize 2000000
+set matsize 10000
 set more off
 clear all
 cls
@@ -20,10 +21,10 @@ foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 
 * Consultas y cuadros
 foreach folder in "cuadros" {
-	local files : dir "$proyecto/src/`folder'" files "01-09.do"
+	local files : dir "$proyecto/src/`folder'" files "01-06.do", respectcase
 	foreach file of local files {
-	display as error "`file'"
-		noisily : do "$proyecto/src/`folder'/`file'"
+		display as error "`file'"
+		do "$proyecto/src/`folder'/`file'"
 	}
 }
 beep
