@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "02-03"
 
 * Especificación
@@ -20,11 +20,11 @@ forvalues i = 1(1)13 {
 
 	* Título del cuadro
   local title = ///
-    "2.3. Evolución distribución de ocupados" + ///
+    "2.3. Evolución distribución de ocupados del sector" + ///
     "según tamaño de empresa, 2010-2016"
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")
 	putexcel set "`file'", sheet("`id'") modify
 	putexcel A1 = "`title'", font("Times New Roman", 11) bold
-} */
+}

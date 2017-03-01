@@ -1,8 +1,5 @@
 /* * Macros auxiliares y objetos temporales
 local id "04-01"
-local origen  "$proyecto/data/consultas"
-local destino "$proyecto/data/cuadros"
-tempfile df1
 
 * Especificación
 .table = .ol_table.new

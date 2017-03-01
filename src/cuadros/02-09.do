@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "02-09"
 
 * Especificación
@@ -20,11 +20,11 @@ forvalues i = 1(1)13 {
 
   * Título del cuadro
   local title = ///
-  "2.9. Porcentaje de trabajadores que trabajan horas excesivas" + ///
-  "(48 horas o más) del sector, 2016"
+    "2.9. Porcentaje de trabajadores del sector que trabajan " + ///
+    "horas excesivas (48 horas o más) del sector, 2016"
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")
 	putexcel set "`file'", sheet("`id'") modify
 	putexcel A1 = "`title'", font("Times New Roman", 11) bold
-} */
+}

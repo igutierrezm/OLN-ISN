@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "04-03"
 
 * Especificación
@@ -10,7 +10,7 @@ local id "04-03"
 forvalues i = 1(1)13 {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
-	keep if inlist(_rama1_v1, `i')
+	keep if inlist(_rama1_v1, `i', 1e6)
 
   * Archivo de destino
 	local name : label _rama1_v1 `i'
@@ -25,4 +25,4 @@ forvalues i = 1(1)13 {
 	.table.export_excel bh, file("`file'") sheet("`id'")
 	putexcel set "`file'", sheet("`id'") modify
 	putexcel A1 = "`title'", font("Times New Roman", 11) bold
-} */
+}

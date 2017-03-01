@@ -20,9 +20,9 @@ forvalues i = 1(1)13 {
 
 	* Título del cuadro
   local title = ///
-    "2.2. Número de empresas y ocupados por tamaño de empresa según" + ///
-		"número de trabajadores, incluyendo empresas unipersonales" + ///
-		"(cuenta propia), 2015"
+    "2.2. Número de empresas y ocupados del sector " + ///
+		"por tamaño de empresa según número de trabajadores, " + ///
+		"incluyendo empresas unipersonales (cuenta propia), 2015"
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")

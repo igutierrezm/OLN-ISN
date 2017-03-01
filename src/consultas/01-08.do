@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "01-08"
 
 * Especificación
@@ -21,4 +21,4 @@ local id "01-08"
 * Estimación
 .table.create
 .table.add_asterisks
-*save "$proyecto/data/consultas/`id'", replace */
+save "$proyecto/data/consultas/`id'", replace

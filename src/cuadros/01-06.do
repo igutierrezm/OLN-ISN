@@ -18,9 +18,9 @@ forvalues i = 1(1)11 {
 	label define _rama1_v2 `i' "Sector", modify
 
   * Título del cuadro
-  local title =                                                         ///
-    "1.6. Participación del PIB del sector `name' en el PIB regional" + ///
-    "y participación del sector en el empleo regional, 2014."         + ///
+  local title = ///
+    "1.6. Participación del PIB del sector `name' en el PIB regional " + ///
+    "y participación del sector en el empleo regional, 2014. " + ///
     "Por región de trabajo."
 
 	* Exportación

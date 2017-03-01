@@ -1,8 +1,5 @@
-* Macros auxiliares y objetos temporales
+/* * Macros auxiliares y objetos temporales
 local id "04-02"
-local origen  "$proyecto/data/consultas"
-local destino "$proyecto/data/cuadros"
-tempfile df1
 
 * Especificación
 .table = .ol_table.new
@@ -28,4 +25,4 @@ forvalues i = 1(1)13 {
 	.table.export_excel bh, file("`file'") sheet("`id'")
 	putexcel set "`file'", sheet("`id'") modify
 	putexcel A1 = "`title'", font("Times New Roman", 11) bold
-}
+} */

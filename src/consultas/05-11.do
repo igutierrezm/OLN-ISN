@@ -3,8 +3,8 @@ local id "05-11"
 local cmds_lb1 "{1: Escolaridad promedio}"
 local cmds_lb2 "{2: Edad promedio}"
 local cmds_lb3 "{3: Ingreso promedio de la ocupación principal}"
-local cmds_lb4 "{4: N}"
-local cmds_lb5 "{5: N}"
+local cmds_lb4 "{4: % mujeres}"
+local cmds_lb5 "{5: % capacitados}"
 local varlist  "_oficio4 _ocupado _rama1_v1 _pweight _counter"
 tempfile df
 
