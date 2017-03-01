@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "01-04"
 tempfile df
 
@@ -8,8 +8,8 @@ tempfile df
 
 * PIB, según sector
 use "$datos/PIB/PIB NSCO", clear
-keep if (_año == 2015) & inrange(_rama1_v1, 1, 13)
-collapse (sum) pib , by(_año _rama1_v1)
+keep if (año == 2015) & inrange(_rama1_v1, 1, 13)
+collapse (sum) pib , by(año _rama1_v1)
 egen Σpib = total(pib)
 generate bh = 100 * pib / Σpib
 drop Σpib
@@ -38,7 +38,7 @@ save `df', replace
 .table.years      = "2015"
 .table.months     = "2 5 8 11"
 .table.subpops    = "{if _ocupado == 1}"
-.table.subpops_lb = "{Ocupados}"
+.table.subpops_lb = "{1: Ocupados}"
 .table.by         = "_rama1_v1"
 .table.along      = ""
 .table.margins    = ""
@@ -56,4 +56,4 @@ keep if (cmd_lb == 2)
 
 * Consolidación
 append2 using `df'
-save "$proyecto/data/consultas/`id'.dta", replace */
+save "$proyecto/data/consultas/`id'.dta", replace

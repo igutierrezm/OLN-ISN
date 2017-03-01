@@ -7,15 +7,15 @@ local id "01-04"
 .table.colvar = "cmd_lb"
 
 * Exportación
-forvalues i = 1(1)1 {
+forvalues i = 1(1)13 {
 	* BBDD
 	use "$proyecto/data/consultas/`id'", clear
-	keep if inlist(_rama1_v1, `i', 1e6)
+	* keep if inlist(_rama1_v1, `i', 1e6)
 
 	* Archivo de destino
 	local name : label _rama1_v1 `i'
 	local file "$proyecto/data/cuadros/`name'/bh.xlsx"
-	label define _rama1_v1 `i' "Sector", modify
+	*label define _rama1_v1 `i' "Sector", modify
 
   * Título del cuadro
   local title =  ///

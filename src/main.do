@@ -21,10 +21,11 @@ foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 
 * Consultas y cuadros
 foreach folder in "cuadros" {
-	local files : dir "$proyecto/src/`folder'" files "01-06.do", respectcase
+	local files : dir "$proyecto/src/`folder'" files "05-05.do", respectcase
 	foreach file of local files {
 		display as error "`file'"
 		do "$proyecto/src/`folder'/`file'"
 	}
 }
 beep
+* Me falta la 2.4

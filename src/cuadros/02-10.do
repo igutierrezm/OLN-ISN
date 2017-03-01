@@ -1,16 +1,17 @@
 /* * Macros auxiliares y objetos temporales
-local id "05-09"
+local id "02-10"
 
 * Especificación
 .table = .ol_table.new
-.table.rowvar = "_oficio1"
-.table.colvar = "_educ"
+.table.rowvar = "_educ"
+.table.colvar = "temp"
 
 * Exportación
 forvalues i = 1(1)13 {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
-	keep if inlist(_rama1_v1, `i', 1e6)
+	keep if inlist(_rama1_v1, `i')
+  rename _tamaño_empresa temp
 
   * Archivo de destino
 	local name : label _rama1_v1 `i'
@@ -18,8 +19,9 @@ forvalues i = 1(1)13 {
   local file "$proyecto/data/cuadros/`name'/bh.xlsx"
 
   * Título del cuadro
-  local title =  ///
-    "5.9. Distribución de ocupados por ocupación según nivel educacional, 2016"
+  local title = ///
+    "2.10. Brechas de ingreso de género para trabajadores dependientes" + ///
+    "del sector, según nivel educacional y tamaño de empresa, 2015."
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")

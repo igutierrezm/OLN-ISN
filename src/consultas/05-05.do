@@ -22,5 +22,5 @@ local inflacion = 110.89 / 92.79
 * Estimación
 .table.create
 .table.add_asterisks
-if (año == 2010) replace bh = `inflacion' * bh
+replace bh = `inflacion' * bh if (año == 2010)
 save "$proyecto/data/consultas/`id'.dta", replace

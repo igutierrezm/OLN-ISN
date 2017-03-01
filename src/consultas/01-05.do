@@ -1,7 +1,8 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "01-05"
 local cmd_lb1 "Distribución regional del PIB"
 local cmd_lb2 "Distribución regional de los ocupados"
+tempfile df
 
 *===============================================================================
 * Panel N°1 - PIB
@@ -12,7 +13,7 @@ use "$datos/PIB/PIB RSCO.dta", clear
 keep if (año == 2014) & !inlist(_rama1_v2, ., 1e6)
 
 * Distribución del PIB por sector, para cada región
-collapse (sum) pib, by(_region_tr_v1 _rama1_v2)
+collapse (sum) pib, by(año _region_tr_v1 _rama1_v2)
 bysort _rama1_v2 : egen total_pib = total(pib)
 generate bh = 100 * pib / total_pib
 drop pib total_pib
@@ -57,4 +58,6 @@ save `df', replace
 .table.add_asterisks
 keep if (cmd_lb == 2)
 
-save "$proyecto/data/consultas/`id' [2].dta", replace */
+* Consolidación
+append2 using `df'
+save "$proyecto/data/consultas/`id'.dta", replace

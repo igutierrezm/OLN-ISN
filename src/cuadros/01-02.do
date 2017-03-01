@@ -1,4 +1,4 @@
-* Macros auxiliares y objetos temporales
+/* * Macros auxiliares y objetos temporales
 local id "01-02"
 
 * Especificación
@@ -17,10 +17,13 @@ forvalues i = 1(1)13 {
 	local file "$proyecto/data/cuadros/`name'/bh.xlsx"
   label define _rama1_v1 `i' "Sector", modify
 
+  * Título del cuadro
+  local title =  ///
+    "1.2. Variación (%) PIB `name'" + ///
+    "con respecto al mismo periodo del año anterior, 2009-2015."
+
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")
 	putexcel set "`file'", sheet("`id'") modify
-	putexcel A1 = ///
-		"1.2. Variación (%) PIB `name' con respecto al mismo periodo del año anterior, 2009-2015.", ///
-		font("Times New Roman", 11) bold
-}
+	putexcel A1 = "`title'", font("Times New Roman", 11) bold
+} */

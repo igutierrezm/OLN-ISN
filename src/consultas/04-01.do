@@ -1,5 +1,5 @@
 * Macros auxiliares y objetos temporales
-local id          "04-01"
+local id "04-01"
 local lb1v1 "{1: Edad promedio}"
 local lb2v1 "{2: Escolaridad promedio}"
 local lb3v1 "{0: Educación superior completa (%)}"

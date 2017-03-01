@@ -1,6 +1,6 @@
 /* * Macros auxiliares y objetos temporales
 local id "02-10"
-local temp "_tamaño_empresa"
+local varlist "_rama1_v1 _educ _tamaño_empresa"
 
 * Especificación
 .table = .ol_table.new
@@ -9,17 +9,18 @@ local temp "_tamaño_empresa"
 .table.cmds_fmt   = "{%15,0fc}"
 .table.years      = "2015"
 .table.months     = ""
-.table.subpops    = "{if _asalariado == 1}"
+.table.subpops    = "{if (_asalariado == 1) & (_mantuvo_empleo == 1)}"
 .table.subpops_lb = "{1: Asalariados}"
 .table.by         = ""
-.table.along      = "_rama1_v1 `temp' _educ _mujer"
+.table.along      = "`varlist' _mujer"
 .table.margins    = "{_educ}"
 .table.margins_lb = "{Total}"
 .table.src        = "esi"
 .table.from       = "$datos"
-.table.varlist0   = "_asalariado _educ _mujer _rama1_v1 `temp' _yprincipal"
+.table.varlist0   = "_asalariado _mantuvo_empleo _mujer _yprincipal `varlist'"
 
 * Estimación
 .table.create
 .table.add_asterisks
+*bysort `varlist' : replace bh = 100 * (bh[_n] - bh[_n - 1]) / bh[_n - 1]
 save "$proyecto/data/consultas/`id'.dta", replace */
