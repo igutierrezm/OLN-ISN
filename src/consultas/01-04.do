@@ -16,7 +16,7 @@ drop Σpib
 
 * Variables auxiliares
 generate cmd_type  = "proportion"
-generate cmd_fmt   = "%15,0fc"
+generate cmd_fmt   = "%15,1fc"
 generate cmd_lb    = 1
 
 * Etiquetado
@@ -50,7 +50,7 @@ save `df', replace
 * Estimación
 .table.create
 .table.annualize
-.table.add_proportions, cmd_lb("2: % Ocupados") cmd_fmt("%15,0fc")
+.table.add_proportions, cmd_lb("2: % Ocupados") cmd_fmt("%15,1fc")
 .table.add_asterisks
 keep if (cmd_lb == 2)
 

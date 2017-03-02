@@ -7,10 +7,11 @@ local id "01-05"
 .table.colvar = "cmd_lb"
 
 * Exportación
-forvalues i = 1(1)13 {
+forvalues i = 1(1)11 {
 	* BBDD
 	use "$proyecto/data/consultas/`id'", clear
 	keep if inlist(_rama1_v2, `i')
+	replace cmd_fmt = "%15,1fc"
 
 	* Archivo de destino
 	local name : label _rama1_v2 `i'

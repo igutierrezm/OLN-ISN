@@ -33,7 +33,7 @@ forvalues i = 1(1)7 {
   * Estimación
   .table.create
   .table.annualize
-  .table.add_proportions, cmd_lb("`i': `cmd_lb`i''") cmd_fmt("%15,0fc")
+  .table.add_proportions, cmd_lb("`i': `cmd_lb`i''") cmd_fmt("%15,1fc")
   .table.add_asterisks
   keep if (cmd_lb == `i') & (_b7_`i' == 1)
   append2 using `df'

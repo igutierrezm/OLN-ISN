@@ -2,8 +2,8 @@
 local id "04-01"
 local lb1v1 "{1: Edad promedio}"
 local lb2v1 "{2: Escolaridad promedio}"
-local lb3v1 "{0: Educación superior completa (%)}"
-local lb4v1 "{0: Mujeres (%)}"
+local lb3v1 "{0: ...}"
+local lb4v1 "{0: ...}"
 local lb3v2 "3: Educación superior completa (%)"
 local lb4v2 "4: Mujeres (%)"
 tempfile df
@@ -17,7 +17,7 @@ foreach var in "_edad" "_esc" "_superior_completa" "_mujer" {
   .table = .ol_table.new
   .table.cmds       = "{total _counter}"
   .table.cmds_lb    = "`lb`i'v1'"
-  .table.cmds_fmt   = "{%15,0fc}"
+  .table.cmds_fmt   = "{%15,1fc}"
   .table.years      = "2016"
   .table.months     = "2 5 8 11"
   .table.subpops    = "{if _ocupado == 1}"
@@ -36,7 +36,7 @@ foreach var in "_edad" "_esc" "_superior_completa" "_mujer" {
   * Estimación
   .table.create
   .table.annualize
-  if (`i' >= 3) .table.add_proportions, cmd_lb("`lb`i'v2'") cmd_fmt("%15,0fc")
+  if (`i' >= 3) .table.add_proportions, cmd_lb("`lb`i'v2'") cmd_fmt("%15,1fc")
   if (`i' >= 3) keep if (cmd_lb == `i') & (`var' == 1)
   if (`i' >= 3) drop `var'
   .table.add_asterisks

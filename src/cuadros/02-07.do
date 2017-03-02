@@ -7,11 +7,12 @@ local id "02-07"
 .table.colvar = "_cise_v3"
 
 * Exportación
-forvalues i = 1(1)13 {
+foreach i in $sectores {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
 	keep if inlist(_rama1_v1, `i')
 	rename _tamaño_empresa temp
+	replace cmd_fmt = "%15,0fc"
 
   * Archivo de destino
 	local name : label _rama1_v1 `i'

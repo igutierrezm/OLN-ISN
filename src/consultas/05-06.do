@@ -29,7 +29,7 @@ foreach var in "_jparcial_inv" "_exceso_hr_int" {
   * Estimación
   .table.create
   .table.annualize
-  .table.add_proportions, cmd_lb("`i': `cmd_lb`i''") cmd_fmt("%15,0fc")
+  .table.add_proportions, cmd_lb("`i': `cmd_lb`i''") cmd_fmt("%15,1fc")
   .table.add_asterisks
   keep if (cmd_lb == `i') & (`var' == 1)
   append2 using `df'

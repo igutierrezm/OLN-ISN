@@ -7,9 +7,11 @@ local id "02-02"
 .table.colvar = "_rama1_v1 subpop_lb cmd_lb"
 
 * Exportación
-forvalues i = 1(1)13 {
+foreach i in $sectores {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
+	replace cmd_fmt = "%15,0fc" if (cmd_lb == 1)
+	replace cmd_fmt = "%15,1fc" if (cmd_lb == 2)
 	keep if inlist(_rama1_v1, `i', 1e6)
 	rename _tamaño_empresa temp
 

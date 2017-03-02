@@ -11,6 +11,7 @@ forvalues i = 1(1)13 {
 	* BBDD
 	use "$proyecto/data/consultas/`id'", clear
 	* keep if inlist(_rama1_v1, `i', 1e6)
+	replace cmd_fmt = "%15,1fc"
 
 	* Archivo de destino
 	local name : label _rama1_v1 `i'

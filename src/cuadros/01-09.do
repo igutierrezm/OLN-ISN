@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "01-09"
 
 * Especificación de cuadro
@@ -7,10 +7,11 @@ local id "01-09"
 .table.colvar = "_cise_v2"
 
 * Exportación
-forvalues i = 1(1)13 {
+foreach i in $sectores {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
 	keep if inlist(_rama1_v1, `i')
+	replace cmd_fmt = "%15,1fc"
 
 	* Archivo de destino
 	local name : label _rama1_v1 `i'
@@ -19,11 +20,11 @@ forvalues i = 1(1)13 {
 
 	* Título del cuadro
   local title =  ///
-    "1.9. Distribución (%) ocupados del sector `name'" + ///
+    "1.9. Distribución (%) ocupados del sector `name' " + ///
 		"según categoría ocupacional, 2010-2016"
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")
 	putexcel set "`file'", sheet("`id'") modify
 	putexcel A1 = "`title'", font("Times New Roman", 11) bold
-} */
+}

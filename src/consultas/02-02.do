@@ -10,7 +10,7 @@ tempfile df
 .table = .ol_table.new
 .table.cmds       = "{total _counter} {proportion _tamaño_empresa}"
 .table.cmds_lb    = "{1: N} {2: %}"
-.table.cmds_fmt   = "{%15,0fc} {%15,0fc}"
+.table.cmds_fmt   = "{%15,0fc} {%15,1fc}"
 .table.years      = "2015"
 .table.months     = ""
 .table.subpops    = "{}"
@@ -25,7 +25,6 @@ tempfile df
 
 * Estimación
 .table.create
-generate asterisk = " "
 save `df', replace
 
 *===============================================================================
@@ -52,7 +51,9 @@ save `df', replace
 * Estimación
 .table.create
 .table.annualize
-.table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,0fc")
+.table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,1fc")
 .table.add_asterisks
+
+* Consolidación
 append2 using `df'
 save "$proyecto/data/consultas/`id'.dta", replace

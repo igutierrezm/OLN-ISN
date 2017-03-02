@@ -49,7 +49,7 @@ forvalues j = 1(1)13 {
     .table = .ol_table.new
     .table.cmds       = "{mean `var'}"
     .table.cmds_lb    = "`cmds_lb`i''"
-    .table.cmds_fmt   = "{%15,0fc}"
+    .table.cmds_fmt   = "{%15,1fc}"
     .table.years      = "2015"
     .table.months     = ""
     .table.subpops    = "{if (_rama1_v1 == `j') & inlist(_oficio4, `rk`j'')}"
@@ -61,9 +61,8 @@ forvalues j = 1(1)13 {
     .table.src        = "casen"
     .table.from       = "$datos"
     .table.varlist0   = "_oficio4 _rama1_v1 `var'"
-    if (`i' == 1) .table.cmds_fmt = "{%15,1fc}"
-    if (`i' >= 4) .table.cmds     = "{proportion `var'}"
-    if (`i' >= 4) .table.by       = "`var'"
+    if (`i' >= 4) .table.cmds = "{proportion `var'}"
+    if (`i' >= 4) .table.by   = "`var'"
 
     * Estimación
     .table.create

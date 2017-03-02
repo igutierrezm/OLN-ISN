@@ -44,7 +44,7 @@ save `df1', replace
 .table = .ol_table.new
 .table.cmds       = "{mean _edad}"
 .table.cmds_lb    = "{2: Edad promedio}"
-.table.cmds_fmt   = "{%15,0fc}"
+.table.cmds_fmt   = "{%15,1fc}"
 .table.years      = "2016"
 .table.months     = "2 5 8 11"
 .table.subpops    = "{if _ocupado == 1}"
@@ -71,7 +71,7 @@ save `df2', replace
 .table = .ol_table.new
 .table.cmds       = "{mean _yprincipal}"
 .table.cmds_lb    = "{3: Ingreso promedio de la ocupación principal}"
-.table.cmds_fmt   = "{%15,0fc}"
+.table.cmds_fmt   = "{%15,1fc}"
 .table.years      = "2015"
 .table.months     = ""
 .table.subpops    = "{if _mantuvo_empleo == 1}"
@@ -97,7 +97,7 @@ save `df3', replace
 .table = .ol_table.new
 .table.cmds       = "{total _counter}"
 .table.cmds_lb    = "{0: N}"
-.table.cmds_fmt   = "{%15,0fc}"
+.table.cmds_fmt   = "{%15,1fc}"
 .table.years      = "2016"
 .table.months     = "2 5 8 11"
 .table.subpops    = "{if _ocupado == 1}"
@@ -113,7 +113,7 @@ save `df3', replace
 * Estimación
 .table.create
 .table.annualize
-.table.add_proportions, cmd_lb("4: % de mujeres") cmd_fmt("%15,0fc")
+.table.add_proportions, cmd_lb("4: % de mujeres") cmd_fmt("%15,1fc")
 .table.add_asterisks
 keep if (cmd_lb == 4) & (_mujer == 1)
 save `df4', replace
@@ -126,7 +126,7 @@ save `df4', replace
 .table = .ol_table.new
 .table.cmds       = "{proportion _capacitado}"
 .table.cmds_lb    = "{5: % de capacitados}"
-.table.cmds_fmt   = "{%15,0fc}"
+.table.cmds_fmt   = "{%15,1fc}"
 .table.years      = "2015"
 .table.months     = ""
 .table.subpops    = "{if _ocupado == 1}"

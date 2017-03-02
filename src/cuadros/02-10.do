@@ -7,7 +7,7 @@ local id "02-10"
 .table.colvar = "temp"
 
 * Exportación
-forvalues i = 1(1)13 {
+foreach i in $sectores {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
 	keep if inlist(_rama1_v1, `i')
@@ -20,7 +20,7 @@ forvalues i = 1(1)13 {
 
   * Título del cuadro
   local title = ///
-    "2.10. Brechas de ingreso de género para trabajadores dependientes" + ///
+    "2.10. Brechas de ingreso de género para trabajadores dependientes " + ///
     "del sector, según nivel educacional y tamaño de empresa, 2015."
 
 	* Exportación

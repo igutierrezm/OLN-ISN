@@ -21,7 +21,7 @@ local id "02-09"
 * Estimación
 .table.create
 .table.annualize
-.table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,0fc")
+.table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,1fc")
 .table.add_asterisks
 keep if (cmd_lb == 2) & (_exceso_hr_int == 1)
 save "$proyecto/data/consultas/`id'.dta", replace

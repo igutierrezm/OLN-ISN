@@ -14,7 +14,7 @@ foreach var in "_boleta" "_cotiza_pension" "_cotiza_salud" {
   .table = .ol_table.new
   .table.cmds       = "{proportion `var'}"
   .table.cmds_lb    = "{`i': `cmd_lb`i''}"
-  .table.cmds_fmt   = "{%15,0fc}"
+  .table.cmds_fmt   = "{%15,1fc}"
   .table.years      = "2015"
   .table.months     = ""
   .table.subpops    = "{if inlist(_cise_v1, 1, 2)}"

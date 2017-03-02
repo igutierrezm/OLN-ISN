@@ -26,7 +26,7 @@ forvalues i = 1(1)13 {
   * Estimación
   .table.create
   .table.annualize
-  .table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,0fc")
+  .table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,1fc")
   .table.add_asterisks
   keep if (cmd_lb == 2)
   append2 using `df'

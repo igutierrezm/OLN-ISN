@@ -7,10 +7,11 @@ local id "05-11"
 .table.colvar = "cmd_lb"
 
 * Exportación
-forvalues i = 1(1)13 {
+foreach i in $sectores {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
 	keep if inlist(_rama1_v1, `i')
+	replace cmd_fmt = "%15,1fc"
 
   * Archivo de destino
 	local name : label _rama1_v1 `i'
@@ -19,7 +20,7 @@ forvalues i = 1(1)13 {
 
 	* Título del cuadro
   local title = ///
-		"5.11. Características generales de las principales ocupaciones" + ///
+		"5.11. Características generales de las principales ocupaciones " + ///
 		"ejercidas en el sector `name', 2015"
 
 	* Exportación
