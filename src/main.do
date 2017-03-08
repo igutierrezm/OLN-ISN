@@ -13,7 +13,7 @@ global datos    "C:/Users/$user/Documents/BBDD/Stata"
 global GitHub   "C:/Users/$user/Documents/GitHub"
 global OLNTools "$GitHub/OLN-Tools"
 global proyecto "$GitHub/OLN-ISN"
-global sectores "1 4 6 7"
+global sectores "1 2 3 4 5 6 7 8 9 10 11 12 13"
 
 * Paquetes externos
 foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
