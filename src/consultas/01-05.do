@@ -1,4 +1,4 @@
-* Macros auxiliares y objetos temporales
+/* * Macros auxiliares y objetos temporales
 local id "01-05"
 local cmd_lb1 "Distribución regional del PIB"
 local cmd_lb2 "Distribución regional de los ocupados"
@@ -60,4 +60,4 @@ keep if (cmd_lb == 2)
 
 * Consolidación
 append2 using `df'
-save "$proyecto/data/consultas/`id'.dta", replace
+save "$proyecto/data/consultas/`id'.dta", replace */

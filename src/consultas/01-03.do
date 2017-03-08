@@ -23,26 +23,3 @@ local id "01-03"
 .table.add_asterisks
 keep if (_cesante == 1)
 save "$proyecto/data/consultas/`id'", replace
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-* Estructura
-.table.rowvar    = "año mes"
-.table.colvar    = "_rama1_v1"
-
-* Exportación
-keep if _cesante == 1
-.table.export_excel bh, file("tabla 01-03")
-.table.export_excel cv, file("tabla 01-03")
-*/

@@ -1,4 +1,4 @@
-* Macros auxiliares y objetos temporales
+/* * Macros auxiliares y objetos temporales
 local id "05-04"
 local cmd_lb1 "Formalidad de la unidad económica"
 local cmd_lb2 "Cotización previsional"
@@ -36,4 +36,4 @@ foreach var in "_boleta" "_cotiza_pension" "_cotiza_salud" {
   save `df', replace
   local ++i
 }
-save "$proyecto/data/consultas/`id'.dta", replace
+save "$proyecto/data/consultas/`id'.dta", replace */

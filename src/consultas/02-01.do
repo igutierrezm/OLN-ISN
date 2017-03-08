@@ -1,4 +1,4 @@
-* Macros auxiliares y objetos temporales
+/* * Macros auxiliares y objetos temporales
 local id "02-01"
 tempfile df
 
@@ -56,4 +56,4 @@ save `df', replace
 
 * Consolidación
 append2 using `df'
-save "$proyecto/data/consultas/`id'.dta", replace
+save "$proyecto/data/consultas/`id'.dta", replace */

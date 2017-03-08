@@ -1,4 +1,4 @@
-* Macros auxiliares y objetos temporales
+/* * Macros auxiliares y objetos temporales
 local id "05-06"
 local cmd_lb1 "Subempleo"
 local cmd_lb2 "Horas Excesivas"
@@ -37,4 +37,4 @@ foreach var in "_jparcial_inv" "_exceso_hr_int" {
   local ++i
 }
 drop _jparcial_inv _exceso_hr_int
-save "$proyecto/data/consultas/`id'.dta", replace
+save "$proyecto/data/consultas/`id'.dta", replace */

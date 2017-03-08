@@ -1,4 +1,4 @@
-* Macros auxiliares y objetos temporales
+/* * Macros auxiliares y objetos temporales
 local id "02-04"
 tempfile df
 
@@ -33,4 +33,4 @@ forvalues i = 1(1)13 {
   save `df', replace
 }
 save "$proyecto/data/consultas/`id'.dta", replace
-* El cuadro tiene demasiadas categoría para hacerlo de una pasada en mi PC
+* El cuadro tiene demasiadas categoría para hacerlo de una pasada en mi PC */

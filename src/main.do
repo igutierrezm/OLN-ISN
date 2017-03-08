@@ -13,7 +13,7 @@ global datos    "C:/Users/$user/Documents/BBDD/Stata"
 global GitHub   "C:/Users/$user/Documents/GitHub"
 global OLNTools "$GitHub/OLN-Tools"
 global proyecto "$GitHub/OLN-ISN"
-global sectores "1 2 3 4 5 6 7 8 9 10 11 12 13"
+global sectores "2 3 8 9"
 
 * Paquetes externos
 foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
@@ -22,9 +22,9 @@ foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 
 * Cuadros
 foreach folder in "cuadros" {
-	local files : dir "$proyecto/src/`folder'" files "01-*.do", respectcase
+	local files : dir "$proyecto/src/`folder'" files "05-*.do", respectcase
 	foreach file of local files {
-		if !inlist("`file'", "01-09.do") continue
+		*if !inlist("`file'", "04-01.do") continue
 		do "$proyecto/src/`folder'/`file'"
 	}
 }
