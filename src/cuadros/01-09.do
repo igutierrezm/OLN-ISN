@@ -4,14 +4,13 @@ local id "01-09"
 * Especificación de cuadro
 .table = .ol_table.new
 .table.rowvar = "año mes"
-.table.colvar = "_cise_v2"
+.table.colvar = "_cise_v3"
 
 * Exportación
 foreach i in $sectores {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
 	keep if inlist(_rama1_v1, `i')
-	replace cmd_fmt = "%15,1fc"
 
 	* Archivo de destino
 	local name : label _rama1_v1 `i'
