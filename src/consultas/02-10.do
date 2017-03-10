@@ -1,6 +1,6 @@
 /* * Macros auxiliares y objetos temporales
 local id "02-10"
-local varlist "_rama1_v1 _educ _tamaño_empresa"
+local varlist "_rama1_v1 _educ _tamano_empresa"
 
 * Especificación
 .table = .ol_table.new

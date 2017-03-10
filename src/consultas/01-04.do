@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "01-04"
 tempfile df
 
@@ -56,4 +56,4 @@ keep if (cmd_lb == 2)
 
 * Consolidación
 append2 using `df'
-save "$proyecto/data/consultas/`id'.dta", replace */
+save "$proyecto/data/consultas/`id'.dta", replace

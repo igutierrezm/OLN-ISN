@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "02-01"
 tempfile df
 
@@ -8,20 +8,20 @@ tempfile df
 
 * Especificación
 .table = .ol_table.new
-.table.cmds       = "{total _counter} {proportion _tamaño_empresa}"
+.table.cmds       = "{total _counter} {proportion _tamano_empresa}"
 .table.cmds_lb    = "{1: N} {2: %}"
 .table.cmds_fmt   = "{%15,0fc} {%15,1fc}"
 .table.years      = "2015"
 .table.months     = ""
 .table.subpops    = "{}"
 .table.subpops_lb = "{1: Empresas}"
-.table.by         = "_tamaño_empresa"
+.table.by         = "_tamano_empresa"
 .table.along      = "_rama1_v1"
-.table.margins    = "{_tamaño_empresa} {_rama1_v1}"
+.table.margins    = "{_tamano_empresa} {_rama1_v1}"
 .table.margins_lb = "{Total} {Nacional}"
 .table.src        = "sii"
 .table.from       = "$datos"
-.table.varlist0   = "_rama1_v1 _tamaño_empresa"
+.table.varlist0   = "_rama1_v1 _tamano_empresa"
 
 * Estimación
 .table.create
@@ -38,15 +38,15 @@ save `df', replace
 .table.cmds_fmt   = "{%15,0fc}"
 .table.years      = "2015"
 .table.months     = "2 5 8 11"
-.table.subpops    = "{if (_ocupado == 1) & (_tamaño_empresa != 0)}"
+.table.subpops    = "{if (_ocupado == 1) & (_tamano_empresa != 0)}"
 .table.subpops_lb = "{2: Ocupados}"
-.table.by         = "_tamaño_empresa"
+.table.by         = "_tamano_empresa"
 .table.along      = "_rama1_v1"
-.table.margins    = "{_tamaño_empresa} {_rama1_v1}"
+.table.margins    = "{_tamano_empresa} {_rama1_v1}"
 .table.margins_lb = "{Total} {Nacional}"
 .table.src        = "ene"
 .table.from       = "$datos"
-.table.varlist0   = "_ocupado _rama1_v1 _tamaño_empresa"
+.table.varlist0   = "_ocupado _rama1_v1 _tamano_empresa"
 
 * Estimación
 .table.create
@@ -56,4 +56,4 @@ save `df', replace
 
 * Consolidación
 append2 using `df'
-save "$proyecto/data/consultas/`id'.dta", replace */
+save "$proyecto/data/consultas/`id'.dta", replace

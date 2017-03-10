@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "01-05"
 local cmd_lb1 "Distribución regional del PIB"
 local cmd_lb2 "Distribución regional de los ocupados"
@@ -10,7 +10,7 @@ tempfile df
 
 * BBDD
 use "$datos/PIB/PIB RSCO.dta", clear
-keep if (año == 2014) & !inlist(_rama1_v2, ., 1e6)
+keep if (año == 2014) & !inlist(_rama1_v2, ., .z)
 
 * Distribución del PIB por sector, para cada región
 collapse (sum) pib, by(año _region_tr_v1 _rama1_v2)
@@ -60,4 +60,4 @@ keep if (cmd_lb == 2)
 
 * Consolidación
 append2 using `df'
-save "$proyecto/data/consultas/`id'.dta", replace */
+save "$proyecto/data/consultas/`id'.dta", replace

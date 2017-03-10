@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "02-03"
 
 * Especificación
@@ -10,13 +10,13 @@ local id "02-03"
 .table.months     = "2 5 8 11"
 .table.subpops    = "{if _ocupado == 1}"
 .table.subpops_lb = "{1: Ocupados}"
-.table.by         = "_tamaño_empresa"
+.table.by         = "_tamano_empresa"
 .table.along      = "_rama1_v1"
-.table.margins    = "{_rama1_v1} {_tamaño_empresa}"
+.table.margins    = "{_rama1_v1} {_tamano_empresa}"
 .table.margins_lb = "{Nacional} {Total}"
 .table.src        = "ene"
 .table.from       = "$datos"
-.table.varlist0   = "_ocupado _rama1_v1 _tamaño_empresa"
+.table.varlist0   = "_ocupado _rama1_v1 _tamano_empresa"
 
 * Estimación
 .table.create
@@ -24,4 +24,4 @@ local id "02-03"
 .table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,1fc")
 .table.add_asterisks
 keep if (cmd_lb == 2)
-save "$proyecto/data/consultas/`id'.dta", replace */
+save "$proyecto/data/consultas/`id'.dta", replace

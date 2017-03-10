@@ -11,12 +11,12 @@ local id "02-05"
 .table.subpops    = "{if _ocupado == 1}"
 .table.subpops_lb = "{1: Ocupados}"
 .table.by         = "_educ"
-.table.along      = "_rama1_v1 _tamaño_empresa"
-.table.margins    = "{_tamaño_empresa} {_educ}"
+.table.along      = "_rama1_v1 _tamano_empresa"
+.table.margins    = "{_tamano_empresa} {_educ}"
 .table.margins_lb = "{Sector} {Total}"
 .table.src        = "ene"
 .table.from       = "$datos"
-.table.varlist0   = "_educ _ocupado _rama1_v1 _tamaño_empresa"
+.table.varlist0   = "_educ _ocupado _rama1_v1 _tamano_empresa"
 
 * Estimación
 .table.create

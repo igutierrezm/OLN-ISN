@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "01-02"
 
 * Variación (%) del PIB sectorial según sector, año y mes
@@ -16,4 +16,4 @@ label variable bh "Variación PIB (%)"
 * Guardado
 drop pib
 drop if (bh == .) | (_rama1_v1 == .)
-save "$proyecto/data/consultas/`id'.dta", replace */
+save "$proyecto/data/consultas/`id'.dta", replace

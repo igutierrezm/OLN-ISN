@@ -1,6 +1,6 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "02-07"
-local temp "_tamaño_empresa"
+local temp "_tamano_empresa"
 
 * Especificación
 .table = .ol_table.new
@@ -22,4 +22,4 @@ local temp "_tamaño_empresa"
 * Estimación
 .table.create
 .table.add_asterisks
-save "$proyecto/data/consultas/`id'.dta", replace */
+save "$proyecto/data/consultas/`id'.dta", replace

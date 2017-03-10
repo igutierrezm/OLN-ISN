@@ -1,31 +1,35 @@
 * ISN - Infome Sectorial Nacional (script principal)
 
-* Housekeeping
-set scrollbufsize 2000000
-set matsize 10000
+* [Editar] Directorios
+global OLNTools "C:/Users/observatorio02/Documents/GitHub/OLN-Tools"
+global proyecto "C:/Users/observatorio02/Documents/GitHub/OLN-ISN"
+global datos    "C:/Users/observatorio02/Documents/BBDD/Stata"
+
+* [Editar] Solicitudes
+global carpetas "cuadros"
+global cuadros  "0.-.."
+global sectores "1"
+
+* [No editar] Limpieza
+set matsize 5000
 set more off
 clear all
 cls
 
-* Macros globales
-global user     "observatorio02"
-global datos    "C:/Users/$user/Documents/BBDD/Stata"
-global GitHub   "C:/Users/$user/Documents/GitHub"
-global OLNTools "$GitHub/OLN-Tools"
-global proyecto "$GitHub/OLN-ISN"
-global sectores "2 3 8 9"
-
-* Paquetes externos
+* [No editar] Paquetes externos 
 foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
 	net install ol_tools`pkg', all force from("$OLNTools/src")
 }
 
-* Cuadros
-foreach folder in "cuadros" {
-	local files : dir "$proyecto/src/`folder'" files "05-*.do", respectcase
-	foreach file of local files {
-		*if !inlist("`file'", "04-01.do") continue
-		do "$proyecto/src/`folder'/`file'"
+* [No editar] Cuadros
+foreach carpeta in $carpetas {
+	noisily : display as text "`carpeta'/"
+	local archivos : dir "$proyecto/src/`carpeta'" files "*.do", respectcase
+	foreach archivo of local archivos {
+		if regexm("`archivo'", "$cuadros.do") {
+			run "$proyecto/src/`carpeta'/`archivo'"
+			noisily : display as text _skip(4) "`archivo' completado"
+		}
 	}
 }
 beep

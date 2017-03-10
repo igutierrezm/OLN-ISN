@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "01-08"
 
 * Especificación
@@ -28,4 +28,4 @@ replace bh = delta
 * Guardado
 drop delta
 keep if (bh != .)
-save "$proyecto/data/consultas/`id'.dta", replace */
+save "$proyecto/data/consultas/`id'.dta", replace

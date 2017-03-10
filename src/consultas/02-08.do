@@ -23,12 +23,12 @@ forvalues i = 1(1)7 {
   .table.subpops    = "{if _asalariado == 1}"
   .table.subpops_lb = "{1: Asalariados}"
   .table.by         = "_b7_`i'"
-  .table.along      = "_rama1_v1 _tamaño_empresa"
-  .table.margins    = "{_tamaño_empresa}"
+  .table.along      = "_rama1_v1 _tamano_empresa"
+  .table.margins    = "{_tamano_empresa}"
   .table.margins_lb = "{Sector}"
   .table.src        = "ene"
   .table.from       = "$datos"
-  .table.varlist0   = "_asalariado _b7 _rama1_v1 _tamaño_empresa"
+  .table.varlist0   = "_asalariado _b7 _rama1_v1 _tamano_empresa"
 
   * Estimación
   .table.create

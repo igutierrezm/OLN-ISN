@@ -1,4 +1,4 @@
-/* * Macros auxiliares y objetos temporales
+* Macros auxiliares y objetos temporales
 local id "04-04"
 
 * Especificación
@@ -24,4 +24,4 @@ local id "04-04"
 .table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,1fc")
 .table.add_asterisks
 keep if (cmd_lb == 2) & (_conmutante_v1 == 1)
-save "$proyecto/data/consultas/`id'.dta", replace */
+save "$proyecto/data/consultas/`id'.dta", replace

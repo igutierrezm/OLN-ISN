@@ -7,11 +7,10 @@ local id "04-02"
 .table.colvar = "año _mujer"
 
 * Exportación
-foreach i in $sectores {
+foreach i of numlist $sectores {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
 	keep if inlist(_rama1_v1, `i')
-	replace cmd_fmt = "%15,1fc"
 
 	* Archivo de destino
 	local name : label _rama1_v1 `i'
@@ -19,11 +18,9 @@ foreach i in $sectores {
   local file "$proyecto/data/cuadros/`name'/bh.xlsx"
 
   * Título del cuadro
-  local title =  ///
+  .table.title =  ///
     "4.2. Ocupados del sector `name' por tramo de edad y sexo, 2010 y 2016"
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")
-	putexcel set "`file'", sheet("`id'") modify
-	putexcel A1 = "`title'", font("Times New Roman", 11) bold
 }
