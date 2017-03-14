@@ -8,7 +8,7 @@ global datos    "C:/Users/observatorio02/Documents/BBDD/Stata"
 * [Editar] Solicitudes
 global carpetas "cuadros"
 global cuadros  "0.-.."
-global sectores "1"
+global sectores "1 2 4 6 7 9"
 
 * [No editar] Limpieza
 set matsize 5000
