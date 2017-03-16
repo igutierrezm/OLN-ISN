@@ -20,7 +20,7 @@ foreach i of numlist $sectores {
   * Título del cuadro
   .table.title =  ///
     "2.9. Porcentaje de trabajadores del sector que trabajan " +  ///
-    "horas excesivas (48 horas o más) del sector, 2016"
+    "horas excesivas (49 horas o más) del sector, 2016"
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")
