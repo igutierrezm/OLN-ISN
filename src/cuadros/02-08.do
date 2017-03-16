@@ -20,7 +20,7 @@ foreach i of numlist $sectores {
 	* Título del cuadro
   .table.title =  ///
     "2.8. Indicadores de seguridad social de trabajadores dependientes " +  ///
-		"del sector `name', 2015-2016."
+		"del sector `name', 2016."
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")
