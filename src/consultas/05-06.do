@@ -6,13 +6,13 @@ tempfile df
 
 * Loop principal
 drop _all
-local i = 1
+local i = 2
 save `df', emptyok
-foreach var in "_jparcial_inv" "_exceso_hr_int" {
+foreach var in "_exceso_hr_int" "_jparcial_inv" {
   * Especificación
   .table = .ol_table.new
   .table.cmds       = "{total _counter}"
-  .table.cmds_lb    = "{`lb`i''}"
+  .table.cmds_lb    = "{0: N}"
   .table.cmds_fmt   = "{%15,0fc}"
   .table.years      = "2010 2016"
   .table.months     = "2 5 8 11"
@@ -29,12 +29,12 @@ foreach var in "_jparcial_inv" "_exceso_hr_int" {
   * Estimación
   .table.create
   .table.annualize
-  .table.add_proportions, cmd_fmt("%15,1fc") replace
+  .table.add_proportions, cmd_fmt("%15,1fc") cmd_lb("`lb`i''") replace
   .table.add_asterisks
   keep if (`var' == 1)
   append2 using `df'
   save `df', replace
-  local ++i
+  local --i
 }
 drop _jparcial_inv _exceso_hr_int
 keep if inlist(_cise_v1, 2, 3, .z)

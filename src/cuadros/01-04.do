@@ -17,7 +17,7 @@ foreach i of numlist $sectores {
 
 	* Título del cuadro
 	.table.title =  ///
-		"1.4. Distribución del PIB y de los ocupados por sector económico, 2015."
+		"1.4. Distribución del PIB y de los ocupados por sector económico, 2015"
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")

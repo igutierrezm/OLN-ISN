@@ -1,4 +1,4 @@
-* ISN - Infome Sectorial Nacional (script principal)
+* ISN - Informe Sectorial Nacional (script principal)
 
 * Directorios (editar) 
 global OLNTools "C:/Users/observatorio02/Documents/GitHub/OLN-Tools"
@@ -7,8 +7,8 @@ global datos    "C:/Users/observatorio02/Documents/BBDD/Stata"
 
 * Solicitudes (editar)
 global carpetas "cuadros"  // "cuadros" y/o "consultas"
-global sectores "1"        // un numlist
-global cuadros  "01-01"    // un regex
+global sectores "1(1)13"   // un numlist
+global cuadros  "04-05"    // un regex
 
 * Preámbulo
 cls

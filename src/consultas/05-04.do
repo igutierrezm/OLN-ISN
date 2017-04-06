@@ -25,7 +25,7 @@ foreach var in "_boleta" "_cotiza_pension" "_cotiza_salud" {
   .table.margins_lb = "{Nacional}"
   .table.src        = "casen"
   .table.from       = "$datos"
-	.table.varlist0 = "_cise_v1 _rama1_v1 `var'"
+	.table.varlist0   = "_cise_v1 _rama1_v1 `var'"
 
   * Estimación
 	.table.create
