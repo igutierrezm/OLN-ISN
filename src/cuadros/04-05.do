@@ -3,7 +3,7 @@ local id "04-05"
 
 * Especificación
 .table = .ol_table.new
-.table.rowvar = "año mes"
+.table.rowvar = "año"
 .table.colvar = "_rama1_v1 _mujer"
 
 * Exportación
