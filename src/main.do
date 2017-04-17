@@ -8,7 +8,7 @@ global datos    "C:/Users/observatorio02/Documents/BBDD/Stata"
 * Solicitudes (editar)
 global carpetas "cuadros"  // "cuadros" y/o "consultas"
 global sectores "1(1)13"   // un numlist
-global cuadros  "04-05"    // un regex
+global cuadros  "02-05"    // un regex
 
 * Preámbulo
 cls
