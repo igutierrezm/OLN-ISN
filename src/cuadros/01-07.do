@@ -8,9 +8,16 @@ local id "01-07"
 
 * Exportación
 foreach i of numlist $sectores {
+	* Especificación
+	if (`i' != 12) .table.colvar = "_rama1_v1"
+	if (`i' == 12) .table.colvar = "b14"
+
 	* BBDD
 	use "$proyecto/data/consultas/`id'", clear
-	keep if inlist(_rama1_v1, `i', .z)
+	if (`i' != 12) keep if inlist(_rama1_v1, `i', .z) & (b14 == .z)
+	if (`i' == 12) drop if (_rama1_v1 == .z) & (b14 != .z)
+	if (`i' == 12) drop if (_rama1_v1 != .z) & (b14 == .z)
+	if (`i' == 12) keep if inlist(_rama1_v1, `i', .z)
 
 	* Archivo de destino
 	local name : label _rama1_v1 `i'
