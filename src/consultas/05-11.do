@@ -5,7 +5,7 @@ local cmds_lb2 "{2: Edad promedio}"
 local cmds_lb3 "{3: Ingreso promedio de la ocupación principal}"
 local cmds_lb4 "{4: % mujeres}"
 local cmds_lb5 "{5: % capacitados}"
-local varlist  "_oficio4 _ocupado _rama1_v1 _pweight _counter"
+local varlist  "_oficio4 _ocupado _rama1_v3 _pweight _counter"
 tempfile df
 
 *===============================================================================
@@ -19,21 +19,22 @@ ol_generate, db("casen") varlist("`varlist'") año("2015")
 keep if (_ocupado == 1)
 
 * Ocupados, según oficio y rama de actividad
-collapse (sum) _counter [pweight = _pweight], by(_rama1_v1 _oficio4)
-gsort _rama1_v1 -_counter
+collapse (sum) _counter [pweight = _pweight], by(_rama1_v3 _oficio4)
+gsort _rama1_v3 -_counter
 
 * Ranking de las 10 ocupaciones más ejercidas, según sector
-by _rama1_v1 : keep if _n <= 10
+by _rama1_v3 : keep if (_n <= 10)
 save `df', replace
-forvalues j = 1(1)13 {
+forvalues j = 1(1)16 {
   use `df', clear
-  keep if (_rama1_v1 == `j')
+  keep if (_rama1_v3 == `j')
   local rk`j' = _oficio4[1]
   forvalues k = 1(1)10 {
     local member_k  = _oficio4[`k']
     local rk`j' = "`rk`j'', `member_k'"
   }
 }
+use `df', clear
 * Sin saber el ranking de antemano, la tabla principal tardaría eones en salir.
 
 *===============================================================================
@@ -42,7 +43,7 @@ forvalues j = 1(1)13 {
 
 drop _all
 save `df', replace emptyok
-forvalues j = 1(1)13 {
+forvalues j = 1(1)16 {
   local i = 1
   foreach var in "_esc" "_edad" "_yprincipal" "_mujer" "_capacitado" {
     * Especificación
@@ -51,16 +52,16 @@ forvalues j = 1(1)13 {
     .table.cmds_lb    = "`cmds_lb`i''"
     .table.cmds_fmt   = "{%15,1fc}"
     .table.years      = "2015"
-    .table.months     = ""
-    .table.subpops    = "{if (_rama1_v1 == `j') & inlist(_oficio4, `rk`j'')}"
+    .table.months     = "0"
+    .table.subpops    = "{if (_rama1_v3 == `j') & inlist(_oficio4, `rk`j'')}"
     .table.subpops_lb = "{1: Ocupados}"
     .table.by         = ""
-    .table.along      = "_oficio4 _rama1_v1"
+    .table.along      = "_oficio4 _rama1_v3"
     .table.margins    = ""
     .table.margins_lb = ""
     .table.src        = "casen"
     .table.from       = "$datos"
-    .table.varlist0   = "_oficio4 _rama1_v1 `var'"
+    .table.varlist0   = "_oficio4 _rama1_v3 `var'"
     if (`i' >= 4) .table.cmds = "{proportion `var'}"
     if (`i' >= 4) .table.by   = "`var'"
 
