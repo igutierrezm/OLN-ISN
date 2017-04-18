@@ -24,6 +24,4 @@ foreach i of numlist $sectores {
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")
-	putexcel set "`file'", sheet("`id'") modify
-	putexcel A1 = "`title'", font("Times New Roman", 11) bold
 }

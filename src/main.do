@@ -8,7 +8,7 @@ global datos    "C:/Users/observatorio02/Documents/BBDD/Stata"
 * Solicitudes (editar)
 global carpetas "cuadros"
 global sectores "12(1)12"
-global cuadros  "05-11"
+global cuadros  "0.-.."
 
 * Preámbulo
 cls

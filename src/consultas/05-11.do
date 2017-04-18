@@ -56,23 +56,27 @@ forvalues j = 1(1)16 {
     .table.subpops    = "{if (_rama1_v3 == `j') & inlist(_oficio4, `rk`j'')}"
     .table.subpops_lb = "{1: Ocupados}"
     .table.by         = ""
-    .table.along      = "_oficio4 _rama1_v3"
+    .table.along      = "_oficio4 _rama1_v1 _rama1_v3"
     .table.margins    = ""
     .table.margins_lb = ""
     .table.src        = "casen"
     .table.from       = "$datos"
-    .table.varlist0   = "_oficio4 _rama1_v3 `var'"
+    .table.varlist0   = "_oficio4 _rama1_v1 _rama1_v3 `var'"
     if (`i' >= 4) .table.cmds = "{proportion `var'}"
     if (`i' >= 4) .table.by   = "`var'"
 
     * Estimación
     .table.create
     .table.add_asterisks
+
+    * Ajustes menores
     if (`i' >= 4) keep if (`var' == 1)
     if (`i' >= 4) drop `var'
+    local ++i
+
+    * Anexión
     append2 using `df'
     save `df', replace
-    local ++i
   }
 }
 save "$proyecto/data/consultas/`id'.dta", replace

@@ -3,18 +3,18 @@ local id "05-11"
 
 * Especificación
 .table = .ol_table.new
-.table.rowvar = "_oficio4"
+.table.rowvar = "_rama1_v3 _oficio4"
 .table.colvar = "cmd_lb"
 
 * Exportación
-forvalues i = 1(1)16 {
+foreach i of numlist $sectores {
 	* BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
-	keep if inlist(_rama1_v3, `i')
+	keep if inlist(_rama1_v1, `i')
 
   * Archivo de destino
-	local name : label _rama1_v3 `i'
-	label define _rama1_v3 `i' "Sector", modify
+	local name : label _rama1_v1 `i'
+	label define _rama1_v1 `i' "Sector", modify
   local file "$proyecto/data/cuadros/`name'/bh.xlsx"
 
 	* Título del cuadro
