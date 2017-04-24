@@ -2,8 +2,8 @@
 local id "01-01"
 
 * PIB sectorial según sector, año y mes
-use "$datos/PIB/PIB NSED", clear
-collapse (sum) pib, by(_rama1_v1 año mes)
+use "$datos/PIB/2008/NSED", clear
+collapse (sum) pib, by(_rama1_v1 _año _mes)
 generate cmd_lb   = 1
 generate cmd_fmt  = "%15,0fc"
 generate cmd_type = "total"
