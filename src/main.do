@@ -1,6 +1,6 @@
 * ISN - Informe Sectorial Nacional (script principal)
 
-* Directorios (editar) 
+* Directorios (editar)
 global OLNTools "C:/Users/ivang/Documents/GitHub/OLN-Tools"
 global proyecto "C:/Users/ivang/Documents/GitHub/OLN-ISN"
 global datos    "C:/Users/ivang/Documents/BBDD/Stata"
@@ -9,6 +9,21 @@ global datos    "C:/Users/ivang/Documents/BBDD/Stata"
 global carpetas "cuadros"
 global sectores "3(1)3"
 global cuadros  "01-02"
+/*
+Cuadros pendientes:
+02-04
+02-07
+02-10
+04-01
+04-02
+05-02
+05-05
+05-06
+05-08
+05-09
+05-10
+05-11
+*/
 
 * Preámbulo
 cls
@@ -16,12 +31,12 @@ clear all
 set more off
 set matsize 5000
 foreach pkg in "" "_casen" "_ene" "_esi" "_pib" "_sii" {
-	net install ol_tools`pkg', all force from("$OLNTools/src")  
+	net install ol_tools`pkg', all force from("$OLNTools/src")
 }
 
 * Cuerpo
 foreach carpeta in $carpetas {
-	local directorio "$proyecto/src/`carpeta'" 
+	local directorio "$proyecto/src/`carpeta'"
 	local archivos : dir "`directorio'" files "*.do", respectcase
 	foreach archivo of local archivos {
 		if regexm("`archivo'", "$cuadros.do") {

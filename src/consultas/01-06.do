@@ -40,7 +40,7 @@ save `df', replace
 .table.cmds_lb    = "{0: N}"
 .table.cmds_fmt   = "{%15,0fc}"
 .table.years      = "2014"
-.table.months     = "2 5 8 11"
+.table.months     = "2(3)11"
 .table.subpops    = "{if _ocupado == 1}"
 .table.subpops_lb = "{1: Ocupados}"
 .table.by         = "_rama1_v2"

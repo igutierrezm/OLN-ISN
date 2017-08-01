@@ -16,7 +16,7 @@ foreach var in "_boleta" "_cotiza_pension" "_cotiza_salud" {
   .table.cmds_lb    = "{`i': `cmd_lb`i''}"
   .table.cmds_fmt   = "{%15,1fc}"
   .table.years      = "2015"
-  .table.months     = ""
+  .table.months     = "0"
   .table.subpops    = "{if inlist(_cise_v1, 1, 2)}"
   .table.subpops_lb = "{1: Trabajadores Independientes}"
   .table.by         = "`var'"

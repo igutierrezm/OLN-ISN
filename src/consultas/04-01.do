@@ -18,7 +18,7 @@ foreach var in "_edad" "_esc" "_superior_completa" "_mujer" "_yprincipal" {
   .table.cmds_lb    = "{`lb`i''}"
   .table.cmds_fmt   = "{%15,1fc}"
   .table.years      = "2016"
-  .table.months     = "2 5 8 11"
+  .table.months     = "2(3)11"
   .table.subpops    = "{if _ocupado == 1}"
   .table.subpops_lb = "{1: Ocupados}"
   .table.by         = ""
@@ -34,8 +34,8 @@ foreach var in "_edad" "_esc" "_superior_completa" "_mujer" "_yprincipal" {
   }
   if (`i' == 5) {
     .table.cmds_fmt   = "{%15,0fc}"
-    .table.years      = "2015"
-    .table.months     = ""
+    .table.years      = "2016"
+    .table.months     = "0"
     .table.subpops    = "{if _mantuvo_empleo == 1}"
     .table.subpops_lb = "{2: Ocupados que mantuvieron su empleo}"
     .table.varlist0   = "_mantuvo_empleo _rama1_v1 `var'"
