@@ -2,8 +2,8 @@
 local id "01-02"
 
 * Variación (%) del PIB sectorial según sector, año y mes
-use "$datos/PIB/2008/NSED", clear
-collapse (sum) pib, by(_rama1_v1 _año _mes)
+use "$datos/pib_nsed", clear
+collapse (sum) pib, by(_rama1_v1 año mes)
 by _rama1_v1 : generate bh = 100 * (pib[_n] - pib[_n - 4]) / pib[_n - 4]
 generate cmd_lb   = 1
 generate cmd_fmt  = "%15,1fc"

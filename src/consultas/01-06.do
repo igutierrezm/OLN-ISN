@@ -9,7 +9,7 @@ tempfile df
 *===============================================================================
 
 * BBDD
-use "$datos/PIB/PIB RSCO.dta", clear
+use "$datos/pib_rsco.dta", clear
 keep if (año == 2014) & !inlist(_rama1_v2, ., .z)
 
 * Distribución del PIB por sector, para cada región

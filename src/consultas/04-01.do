@@ -11,7 +11,7 @@ tempfile df
 drop _all
 local i = 1
 save `df', emptyok
-foreach var in "_edad" "_esc" "_superior_completa" "_mujer" "_yprincipal" {
+foreach var in "_edad" "_esc" "_sup_completa" "_mujer" "_yprincipal" {
   * Especificación
   .table = .ol_table.new
   .table.cmds       = "{mean `var'}"
@@ -46,9 +46,9 @@ foreach var in "_edad" "_esc" "_superior_completa" "_mujer" "_yprincipal" {
   .table.create
   if (`i' != 5) .table.annualize
   if inlist(`i', 3, 4) .table.add_proportions, cmd_fmt("%15,1fc") replace
-  if inlist(`i', 3, 4) keep if (`var' == 1)
+	.table.add_asterisks
+	if inlist(`i', 3, 4) keep if (`var' == 1)
   if inlist(`i', 3, 4) drop `var'
-  .table.add_asterisks
   append2 using `df'
   save `df', replace
   local ++i

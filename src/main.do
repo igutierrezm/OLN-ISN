@@ -1,14 +1,14 @@
 * ISN - Informe Sectorial Nacional (script principal)
 
 * Directorios (editar)
-global OLNTools "C:/Users/ivang/Documents/GitHub/OLN-Tools"
-global proyecto "C:/Users/ivang/Documents/GitHub/OLN-ISN"
-global datos    "C:/Users/ivang/Documents/BBDD/Stata"
+global OLNTools "C:/Users/observatorio02/Documents/GitHub/OLN-Tools"
+global proyecto "C:/Users/observatorio02/Documents/GitHub/OLN-ISN"
+global datos    "C:/Users/observatorio02/Documents/datos"
 
 * Solicitudes (editar)
-global carpetas "cuadros"
-global sectores "3(1)3"
-global cuadros  "01-02"
+global carpetas "consultas cuadros"
+global cuadros  "05-11"
+global sectores "5"
 /*
 Cuadros pendientes:
 02-04

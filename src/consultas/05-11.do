@@ -14,7 +14,7 @@ tempfile df
 
 * Preparación de la BBDD
 select_casen, varlist("`varlist'") año("2015")
-use `r(selection)' using "$datos/CASEN/CASEN 2015.dta", clear
+use `r(selection)' using "$datos/casen_2015.dta", clear
 ol_generate, db("casen") varlist("`varlist'") año("2015")
 keep if (_ocupado == 1)
 

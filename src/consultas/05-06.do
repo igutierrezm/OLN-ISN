@@ -6,7 +6,7 @@ tempfile df
 
 * Loop principal
 drop _all
-local i = 2
+local i = 1
 save `df', emptyok
 foreach var in "_exceso_hr_int" "_jparcial_inv" {
   * Especificación
@@ -14,7 +14,7 @@ foreach var in "_exceso_hr_int" "_jparcial_inv" {
   .table.cmds       = "{total _counter}"
   .table.cmds_lb    = "{0: N}"
   .table.cmds_fmt   = "{%15,0fc}"
-  .table.years      = "2010 2016"
+  .table.years      = "2016"
   .table.months     = "2(3)11"
   .table.subpops    = "{if (_ocupado == 1)}"
   .table.subpops_lb = "{1: Cuenta Propia}"
@@ -34,7 +34,7 @@ foreach var in "_exceso_hr_int" "_jparcial_inv" {
   keep if (`var' == 1)
   append2 using `df'
   save `df', replace
-  local --i
+  local ++i
 }
 drop _jparcial_inv _exceso_hr_int
 keep if inlist(_cise_v1, 2, 3, .z)

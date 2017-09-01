@@ -7,7 +7,7 @@ tempfile df
 *===============================================================================
 
 * PIB, según sector
-use "$datos/PIB/PIB NSCO", clear
+use "$datos/pib_nsco", clear
 keep if (año == 2015) & inrange(_rama1_v1, 1, 13)
 collapse (sum) pib , by(año _rama1_v1)
 egen Σpib = total(pib)

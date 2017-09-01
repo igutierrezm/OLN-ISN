@@ -25,3 +25,4 @@ foreach i of numlist $sectores {
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")
 }
+ 
