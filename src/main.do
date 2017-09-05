@@ -7,7 +7,7 @@ global datos    "C:/Users/observatorio02/Documents/datos"
 
 * Solicitudes (editar)
 global carpetas "consultas cuadros"
-global cuadros  "05-.."
+global cuadros  "05-0[2 5]"
 global sectores "5"
 /*
 Cuadros pendientes:

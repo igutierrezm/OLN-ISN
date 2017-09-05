@@ -1,6 +1,6 @@
 * Macros auxiliares y objetos temporales
 local id "05-05"
-local inflacion = 25426.52 / 21356.86
+local inflacion = 26238.10 / 21356.86
 
 * Especificación
 .table = .ol_table.new
