@@ -6,7 +6,7 @@ local varlist "_rama1_v1 _educ _tamano_empresa"
 .table = .ol_table.new
 .table.cmds       = "{mean _yprincipal}"
 .table.cmds_lb    = "{1: $}"
-.table.cmds_fmt   = "{%15,0fc}"
+.table.cmds_fmt   = "{%15,1fc}"
 .table.years      = "2016"
 .table.months     = "0"
 .table.subpops    = "{if (_asalariado == 1) & (_mantuvo_empleo == 1)}"

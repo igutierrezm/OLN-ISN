@@ -10,7 +10,7 @@ tempfile df
 .table = .ol_table.new
 .table.cmds       = "{total _counter} {proportion _tamano_empresa}"
 .table.cmds_lb    = "{1: N} {2: %}"
-.table.cmds_fmt   = "{%15,0fc} {%15,1fc}"
+.table.cmds_fmt   = "{%15,1fc} {%15,1fc}"
 .table.years      = "2015"
 .table.months     = "0"
 .table.subpops    = "{}"
@@ -35,7 +35,7 @@ save `df', replace
 .table = .ol_table.new
 .table.cmds       = "{total _counter}"
 .table.cmds_lb    = "{1: N}"
-.table.cmds_fmt   = "{%15,0fc}"
+.table.cmds_fmt   = "{%15,1fc}"
 .table.years      = "2015"
 .table.months     = "2(3)11"
 .table.subpops    = "{if (_ocupado == 1) & (_tamano_empresa != 0)}"

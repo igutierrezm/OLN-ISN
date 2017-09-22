@@ -5,7 +5,7 @@ local id "01-07"
 .table = .ol_table.new
 .table.cmds       = "{total _counter}"
 .table.cmds_lb    = "{1: n. (en miles)}"
-.table.cmds_fmt   = "{%15,0fc}"
+.table.cmds_fmt   = "{%15,1fc}"
 .table.years      = "2010(1)2016"
 .table.months     = "1(1)12"
 .table.subpops    = "{if (_ocupado == 1)}"

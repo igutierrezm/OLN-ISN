@@ -5,7 +5,7 @@ local id "01-01"
 use "$datos/pib_nsed", clear
 collapse (sum) pib, by(_rama1_v1 año mes)
 generate cmd_lb   = 1
-generate cmd_fmt  = "%15,0fc"
+generate cmd_fmt  = "%15,1fc"
 generate cmd_type = "total"
 generate asterisk = ""
 rename pib bh

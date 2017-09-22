@@ -33,7 +33,7 @@ foreach var in "_edad" "_esc" "_sup_completa" "_mujer" "_yprincipal" {
     .table.by   = "`var'"
   }
   if (`i' == 5) {
-    .table.cmds_fmt   = "{%15,0fc}"
+    .table.cmds_fmt   = "{%15,1fc}"
     .table.years      = "2016"
     .table.months     = "0"
     .table.subpops    = "{if _mantuvo_empleo == 1}"
