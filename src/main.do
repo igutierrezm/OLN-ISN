@@ -7,23 +7,8 @@ global datos    "C:/Users/observatorio02/Documents/datos"
 
 * Solicitudes (editar)
 global carpetas "cuadros"
-global cuadros  "..-.."
-global sectores "11(1)13"
-/*
-Cuadros pendientes:
-02-04
-02-07
-02-10
-04-01
-04-02
-05-02
-05-05
-05-06
-05-08
-05-09
-05-10
-05-11
-*/
+global cuadros  "02-01"
+global sectores "06(1)13"
 
 * Preámbulo
 cls

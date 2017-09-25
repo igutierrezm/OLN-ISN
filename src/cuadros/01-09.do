@@ -19,7 +19,7 @@ foreach i of numlist $sectores {
 
 	* Título del cuadro
 	.table.title =  ///
-		"1.9. Distribución (%) ocupados del sector `name' " +  ///
+		"1.9. N° de ocupados (en miles) del sector `name' " +  ///
 		"según categoría ocupacional, 2010-2016"
 
 	* Exportación

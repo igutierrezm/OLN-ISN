@@ -4,21 +4,21 @@ tempfile df
 
 *===============================================================================
 * Panel N°1 - Empresas
-*==============================================================================
+*===============================================================================
 
 * Especificación
 .table = .ol_table.new
 .table.cmds       = "{total _counter} {proportion _tamano_empresa}"
 .table.cmds_lb    = "{1: N} {2: %}"
-.table.cmds_fmt   = "{%15,1fc} {%15,1fc}"
+.table.cmds_fmt   = "{%15,0fc} {%15,1fc}"
 .table.years      = "2015"
 .table.months     = "0"
 .table.subpops    = "{}"
 .table.subpops_lb = "{1: Empresas}"
 .table.by         = "_tamano_empresa"
 .table.along      = "_rama1_v1"
-.table.margins    = "{_tamano_empresa} {_rama1_v1}"
-.table.margins_lb = "{Total} {Nacional}"
+.table.margins    = "{_rama1_v1} {_tamano_empresa}"
+.table.margins_lb = "{Nacional} {Total}"
 .table.src        = "sii"
 .table.from       = "$datos"
 .table.varlist0   = "_rama1_v1 _tamano_empresa"
