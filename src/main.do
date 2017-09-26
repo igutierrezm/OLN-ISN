@@ -6,9 +6,9 @@ global proyecto "C:/Users/observatorio02/Documents/GitHub/OLN-ISN"
 global datos    "C:/Users/observatorio02/Documents/datos"
 
 * Solicitudes (editar)
-global carpetas "cuadros"
-global cuadros  "04-02"
-global sectores "01(1)13"
+global carpetas "consultas"
+global cuadros  "01-01"
+global sectores "01(1)01"
 
 * Preámbulo
 cls
