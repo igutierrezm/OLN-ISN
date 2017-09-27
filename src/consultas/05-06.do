@@ -14,7 +14,7 @@ foreach var in "_exceso_hr_int" "_jparcial_inv" {
   .table.cmds       = "{total _counter}"
   .table.cmds_lb    = "{0: N}"
   .table.cmds_fmt   = "{%15,1fc}"
-  .table.years      = "2016"
+  .table.years      = "2010 2016"
   .table.months     = "2(3)11"
   .table.subpops    = "{if (_ocupado == 1)}"
   .table.subpops_lb = "{1: Cuenta Propia}"

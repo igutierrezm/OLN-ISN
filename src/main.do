@@ -12,7 +12,7 @@ global datos    "C:/Users/observatorio02/Documents/datos"
 
 * Solicitudes (editar)
 global carpetas "cuadros"
-global cuadros  "01-06"
+global cuadros  "05-06"
 global sectores "01(1)13"
 
 * Preámbulo
