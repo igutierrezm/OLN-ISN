@@ -1,22 +1,19 @@
 * ISN - Informe Sectorial Nacional (script principal)
 
 * Directorios (oficina)
-// global OLNTools "C:/Users/observatorio02/Documents/GitHub/OLN-Tools"
-// global proyecto "C:/Users/observatorio02/Documents/GitHub/OLN-ISN"
-// global datos    "C:/Users/observatorio02/Documents/datos"
+global OLNTools "C:/Users/observatorio02/Documents/GitHub/OLN-Tools"
+global proyecto "C:/Users/observatorio02/Documents/GitHub/OLN-ISN"
+global datos    "C:/Users/observatorio02/Documents/datos"
 
-* Directorios (casa)
-global OLNTools "C:\Users\ivang\Documents\GitHub/OLN-Tools"
-global proyecto "C:\Users\ivang\Documents\GitHub/OLN-ISN"
-global datos    "D:\Users\ivang\Documents\BBDD\Stata"
+// * Directorios (casa)
+// global OLNTools "C:\Users\ivang\Documents\GitHub/OLN-Tools"
+// global proyecto "C:\Users\ivang\Documents\GitHub/OLN-ISN"
+// global datos    "D:\Users\ivang\Documents\BBDD\Stata"
 
 * Solicitudes (editar)
-global carpetas "consultas"
-global cuadros  "01-04"
-global sectores "01(1)01"
-// PENDIENTES
-//	01-05
-//	01-06
+global carpetas "cuadros"
+global cuadros  "01-06"
+global sectores "01(1)13"
 
 * Preámbulo
 cls
