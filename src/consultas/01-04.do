@@ -7,12 +7,14 @@ tempfile df
 *===============================================================================
 
 * PIB, según sector
-use "$datos/pib_nsco", clear
-keep if (año == 2015) & inrange(_rama1_v1, 1, 13)
-collapse (sum) pib , by(año _rama1_v1)
-egen Σpib = total(pib)
-generate bh = 100 * pib / Σpib
-drop Σpib
+use if (serie == "nscoo2008") using "$datos/pib", clear
+ol_generate, varlist("_rama1_v1 _año _mes") db("pib")
+collapse (sum) pib, by(_rama1_v1 _año)
+keep if (_rama1_v1 != 1e5)
+keep if (_año == 2015) 
+egen sum_pib = total(pib)
+generate bh = 100 * pib / sum_pib
+drop sum_pib
 
 * Variables auxiliares
 generate cmd_type  = "proportion"
