@@ -12,8 +12,8 @@ global datos    "D:\Users\ivang\Documents\BBDD\Stata"
 
 * Solicitudes (editar)
 global carpetas "cuadros"
-global cuadros  "05-.."
-global sectores "11(1)11"
+global cuadros  "05-05"
+global sectores "1(1)13"
 
 * Preámbulo
 cls

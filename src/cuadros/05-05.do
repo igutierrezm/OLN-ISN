@@ -3,8 +3,8 @@ local id "05-05"
 
 * Especificación
 .table = .ol_table.new
-.table.rowvar = "_rama1_v1 año"
-.table.colvar = "_educ"
+.table.rowvar = "_educ"
+.table.colvar = "_rama1_v1 año"
 
 * Exportación
 foreach i of numlist $sectores {

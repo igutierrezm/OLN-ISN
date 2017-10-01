@@ -3,7 +3,7 @@ local id "05-11"
 
 * Especificación
 .table = .ol_table.new
-.table.rowvar = "_rama1_v3 _oficio4"
+.table.rowvar = "_oficio4"
 .table.colvar = "cmd_lb"
 
 * Exportación
