@@ -11,9 +11,9 @@ global proyecto "C:\Users\ivang\Documents\GitHub/OLN-ISN"
 global datos    "D:\Users\ivang\Documents\BBDD\Stata"
 
 * Solicitudes (editar)
-global carpetas "cuadros"
-global cuadros  "05-05"
-global sectores "1(1)13"
+global carpetas "consultas"
+global cuadros  "A-01"
+global sectores "1(1)1"
 
 * Preámbulo
 cls
