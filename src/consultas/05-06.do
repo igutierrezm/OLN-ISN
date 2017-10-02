@@ -8,7 +8,7 @@ tempfile df
 drop _all
 local i = 1
 save `df', emptyok
-foreach var in "_exceso_hr_int" "_jparcial_inv" {
+foreach var in "_jparcial_inv" "_exceso_hr_int" {
   * Especificación
   .table = .ol_table.new
   .table.cmds       = "{total _counter}"
