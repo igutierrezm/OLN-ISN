@@ -12,7 +12,7 @@ global datos    "D:\Users\ivang\Documents\BBDD\Stata"
 
 * Solicitudes (editar)
 global carpetas "consultas"
-global cuadros  "A-01"
+global cuadros  "05-06"
 global sectores "1(1)1"
 
 * Preámbulo
