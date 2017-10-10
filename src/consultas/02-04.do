@@ -12,12 +12,12 @@ tempfile df
 .table.subpops    = "{if (_ocupado == 1)}"
 .table.subpops_lb = "{1: Ocupados}"
 .table.by         = "_tamano_empresa"
-.table.along      = "_rama1_v1 _region_re_v1"
-.table.margins    = "{_region_re_v1} {_tamano_empresa}"
+.table.along      = "_rama1_v1 _region_tr_v1"
+.table.margins    = "{_region_tr_v1} {_tamano_empresa}"
 .table.margins_lb = "{Sector} {Total}"
 .table.src        = "ene"
 .table.from       = "$datos"
-.table.varlist0   = "_ocupado _rama1_v1 _region_re_v1 _tamano_empresa"
+.table.varlist0   = "_ocupado _rama1_v1 _region_tr_v1 _tamano_empresa"
 
 * Estimación
 .table.create

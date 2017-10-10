@@ -3,7 +3,7 @@ local id "02-04"
 
 * Especificación
 .table = .ol_table.new
-.table.rowvar = "_region_re_v1"
+.table.rowvar = "_region_tr_v1"
 .table.colvar = "_tamano_empresa"
 
 * Exportación
@@ -20,7 +20,7 @@ foreach i of numlist $sectores {
   * Título del cuadro
   .table.title =  ///
     "2.4. Distribución de ocupados del sector " +  ///
-		"por región según tamaño de empresa, 2016"
+		"por región de trabajo, según tamaño de empresa, 2016"
 
 	* Exportación
 	.table.export_excel bh, file("`file'") sheet("`id'")

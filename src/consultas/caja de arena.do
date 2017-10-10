@@ -1,22 +1,23 @@
 * Macros auxiliares y objetos temporales
-local id "04-02"
+local id "caja de arena"
+tempfile df
 
 * Especificación
 .table = .ol_table.new
 .table.cmds       = "{total _counter}"
-.table.cmds_lb    = "{1: N}"
+.table.cmds_lb    = "{0: N}"
 .table.cmds_fmt   = "{%15,1fc}"
 .table.years      = "2016"
 .table.months     = "2(3)11"
-.table.subpops    = "{if _ocupado == 1}"
-.table.subpops_lb = "{1: Ocupados}"
-.table.by         = "_tramo_edad_v1"
-.table.along      = "_rama1_v1 _mujer"
-.table.margins    = "{_mujer} {_rama1_v1} {_tramo_edad_v1}"
-.table.margins_lb = "{Total} {Nacional} {Total}"
+.table.subpops    = "{if _region_tr_v1 == 10}"
+.table.subpops_lb = "{1: Ocupados de la region}"
+.table.by         = "b14"
+.table.along      = ""
+.table.margins    = ""
+.table.margins_lb = ""
 .table.src        = "ene"
 .table.from       = "$datos"
-.table.varlist0   = "_mujer _ocupado _rama1_v1 _tramo_edad_v1"
+.table.varlist0   = "_ocupado b14 _region_tr_v1"
 
 * Estimación
 .table.create
@@ -24,4 +25,6 @@ local id "04-02"
 .table.add_proportions, cmd_lb("2: %") cmd_fmt("%15,1fc")
 .table.add_asterisks
 keep if (cmd_lb == 2)
+
+* Consolidación
 save "$proyecto/data/consultas/`id'.dta", replace

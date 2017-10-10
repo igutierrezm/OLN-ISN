@@ -10,7 +10,7 @@ local id "01-07"
 foreach i of numlist $sectores {
   * BBDD
 	use "$proyecto/data/consultas/`id'.dta", clear
-	keep if inlist(_rama1_v1, `i')
+  keep if inlist(_rama1_v1, `i', .z)
 
 	* Archivo de destino
 	local name : label _rama1_v1 `i'

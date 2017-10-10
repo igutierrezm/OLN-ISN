@@ -12,8 +12,8 @@ global datos    "C:/Users/observatorio02/Documents/datos"
 
 * Solicitudes (editar)
 global carpetas "cuadros"
-global cuadros  "01-01"
-global sectores "1(1)13"
+global cuadros  "05-.."
+global sectores "6"
 
 * Preámbulo
 cls

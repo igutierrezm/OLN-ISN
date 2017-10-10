@@ -1,12 +1,12 @@
 * Macros auxiliares y objetos temporales
 local id "02-08"
-local cmd_lb1 "% de trabajadores con vacaciones pagadas"
-local cmd_lb2 "% de trabajadores con días pagados por enfermedad"
-local cmd_lb3 "% de trabajadores con cotización previsional o de pensión"
-local cmd_lb4 "% de trabajadores con cotización por previsión de salud"
-local cmd_lb5 "% de trabajadores con cotización por seguro de desempleo"
-local cmd_lb6 "% de trabajadores con permiso por maternidad o paternidad"
-local cmd_lb7 "% de trabajadores con servicio de guarderías infantiles"
+local cmd_lb1 "% con vacaciones pagadas"
+local cmd_lb2 "% con días pagados por enfermedad"
+local cmd_lb3 "% con cotización previsional o de pensión"
+local cmd_lb4 "% con cotización por previsión de salud"
+local cmd_lb5 "% con cotización por seguro de desempleo"
+local cmd_lb6 "% con permiso por maternidad o paternidad"
+local cmd_lb7 "% con servicio de guarderías infantiles"
 tempfile df
 
 * Loop principal
